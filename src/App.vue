@@ -50,7 +50,7 @@
         return listedCategories
       },
       addToCart: function (product) {
-        this.cart.push(product)
+          this.cart.push(product)
       }
     }
   }

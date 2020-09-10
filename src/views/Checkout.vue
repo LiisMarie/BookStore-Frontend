@@ -10,10 +10,27 @@
                         </div>
                         <div class="col-sm-9">
                             <div>
+                                <b-button size="sm" @click.prevent="removeAllSameBooks(product.Item)" variant="danger" style="float: right"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
                                 <h5>{{product.Item.heading}}</h5>
-                                <p>Author: {{product.Item.author}}</p>
-                                <p>Amount: {{product.amount}}</p>
-                                <p>Price: {{product.Item.cost}}€</p>
+
+                                <div class="row">
+                                    <div class="col-4">Author:</div>
+                                    <div class="col-8">{{product.Item.author}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Price:</div>
+                                    <div class="col-8">{{product.Item.cost}}€</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Amount:</div>
+                                    <div class="col-8">
+                                        <b-button size="sm" @click.prevent="removeFromCart(product.Item)"><font-awesome-icon :icon="['fas', 'minus']"/></b-button>
+                                        {{product.amount}}
+                                        <b-button size="sm" @click.prevent="updateCart(product.Item)"><font-awesome-icon :icon="['fas', 'plus']"/></b-button>
+                                    </div>
+                                </div>
+
+                                <hr>
                             </div>
                         </div>
                     </div>
@@ -22,7 +39,7 @@
             <div class="col-sm-4 text-center">
                 <b-card header="Pricing Details">
                     <p>Total Price:</p>
-                    <h3>${{purchase}}</h3>
+                    <h3>{{purchase}}€</h3>
                     <hr>
                     <b-btn href="#" variant="outline-primary">Place Order</b-btn>
                 </b-card>
@@ -34,7 +51,7 @@
 <script>
     export default {
         name: 'Checkout',
-        props: ['cart', 'purchase'],
+        props: ['cart', 'purchase', 'updateCart'],
         computed: {
             cartItems () {
                 return this.computeCart()
@@ -57,6 +74,22 @@
                     }
                 })
                 return newCart
+            },
+            removeFromCart: function (product) {
+                const index = this.cart.indexOf(product);
+                if (index > -1) {
+                    this.cart.splice(index, 1);
+                }
+            },
+            removeAllSameBooks: function (product) {
+                let i = 0;
+                while (i < this.cart.length) {
+                    if (this.cart[i] === product) {
+                        this.cart.splice(i, 1);
+                    } else {
+                        ++i;
+                    }
+                }
             }
         }
     }
