@@ -1,17 +1,19 @@
 <template>
-    <div class="container">
+    <b-container fluid>
         <div class="row mt-2">
             <div class="col-sm-8">
                 <b-card header="My Cart">
-                    <p v-if="!purchase || purchase.length === 0 ">No Books in the Cart!</p>
+                  <p v-if="!purchase || purchase.length === 0 ">No Books in the Cart!</p>
+
                     <div class="row mt-2 md-1" v-for="product in cartItems" :key="product.Item.heading">
                         <div class="col-sm-3">
-                            <b-img fluid :src="product.Item.picture" class="p-2"></b-img>
+                          <b-img style="max-height:200px" fluid :src="product.Item.picture" class="p-2"></b-img>
                         </div>
                         <div class="col-sm-9">
                             <div>
-                                <b-button size="sm" @click.prevent="removeAllSameBooks(product.Item)" variant="danger" style="float: right"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
-                                <h5>{{product.Item.heading}}</h5>
+                              <b-button size="sm" @click.prevent="removeFromCart(product.Item)" variant="danger" style="float: right"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
+
+                              <h5>{{product.Item.heading}}</h5>
 
                                 <div class="row">
                                     <div class="col-4">Author:</div>
@@ -20,14 +22,6 @@
                                 <div class="row">
                                     <div class="col-4">Price:</div>
                                     <div class="col-8">{{product.Item.cost}}€</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">Amount:</div>
-                                    <div class="col-8">
-                                        <b-button size="sm" @click.prevent="removeFromCart(product.Item)"><font-awesome-icon :icon="['fas', 'minus']"/></b-button>
-                                        {{product.amount}}
-                                        <b-button size="sm" @click.prevent="updateCart(product.Item)"><font-awesome-icon :icon="['fas', 'plus']"/></b-button>
-                                    </div>
                                 </div>
 
                                 <hr>
@@ -45,7 +39,7 @@
                 </b-card>
             </div>
         </div>
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -79,16 +73,6 @@
                 const index = this.cart.indexOf(product);
                 if (index > -1) {
                     this.cart.splice(index, 1);
-                }
-            },
-            removeAllSameBooks: function (product) {
-                let i = 0;
-                while (i < this.cart.length) {
-                    if (this.cart[i] === product) {
-                        this.cart.splice(i, 1);
-                    } else {
-                        ++i;
-                    }
                 }
             }
         }
