@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row mt-3">
-            <div v-for="(product) in collections" :key="product.heading + product.cost" class="col-sm-4">
+            <div v-for="(product) in collections" :key="product.heading + product.cost" class="col-sm-6 col-md-4 col-lg-3">
                 <product-card :product="product" :updateCart="updateCart"></product-card>
             </div>
         </div>

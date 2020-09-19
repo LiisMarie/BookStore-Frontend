@@ -25,15 +25,6 @@
       this.categories = this.getCategories()
     },
     methods: {
-      getCategories: function () {
-        let listedCategories = []
-        this.collections.filter((product) => {
-          if (!listedCategories.includes(product.genre)) {
-            listedCategories.push(product.genre)
-          }
-        })
-        return listedCategories
-      },
       getDisplayProducts (category) {
         let productList = this.collections.filter((product) => {
           if (product.genre === category) {

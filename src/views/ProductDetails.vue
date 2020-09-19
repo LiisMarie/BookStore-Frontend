@@ -52,21 +52,16 @@
 </template>
 
 <script>
-    import Data from '../assets/book_list.json'
-
     export default {
         name: 'ProductDetails',
         props: ['updateCart'],
         data () {
             return {
-                collection: Data.collection,
                 product: []
             }
         },
         created () {
-            this.product = this.collection.find((item) => {
-                return item.isbn == this.$route.params.productIsbn
-            })
+            this.product = this.getBookByIsbn(this.$route.params.productIsbn);
         }
     }
 </script>
