@@ -14,7 +14,7 @@
 
           <b-navbar-nav is-nav class="ml-auto mr-1 float-right">
               <a class="nav-link ml-auto mr-1" @click.prevent="route_to('/checkout')">
-                <font-awesome-icon :icon="['fas', 'shopping-cart']"/> {{purchase}}
+                <font-awesome-icon :icon="['fas', 'shopping-cart']"/> {{amountOfItemsInCart}}
               </a>
           </b-navbar-nav>
 
@@ -25,7 +25,7 @@
 <script>
     export default {
         name: 'Navbar',
-        props: ['categories', 'purchase'],
+        props: ['categories', 'amountOfItemsInCart'],
         methods: {
             route_to (path) {
                 this.$router.push(path)
@@ -35,7 +35,5 @@
 </script>
 
 <style scoped>
-  .b-navbar-brand {
-    position: absolute;
-  }
+
 </style>

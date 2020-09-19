@@ -3,7 +3,7 @@
         <div class="row mt-2">
             <div class="col-sm-8">
                 <b-card header="My Cart">
-                  <p v-if="!purchase || purchase.length === 0 ">No Books in the Cart!</p>
+                  <p v-if="!purchaseTotalPrice || purchaseTotalPrice.length === 0 ">No Books in the Cart!</p>
 
                     <div class="row mt-2 md-1" v-for="product in cartItems" :key="product.Item.heading">
                         <div class="col-sm-3">
@@ -33,9 +33,9 @@
             <div class="col-sm-4 text-center">
                 <b-card header="Pricing Details">
                     <p>Total Price:</p>
-                    <h3>{{purchase}}€</h3>
+                    <h3>{{purchaseTotalPrice}}€</h3>
                     <hr>
-                    <b-btn href="#" variant="outline-primary">Place Order</b-btn>
+                    <b-button @click="removeAllProductsFromCart" variant="outline-primary">Place Order</b-button>
                 </b-card>
             </div>
         </div>
@@ -45,7 +45,7 @@
 <script>
     export default {
         name: 'Checkout',
-        props: ['cart', 'purchase', 'updateCart'],
+        props: ['cart', 'purchaseTotalPrice', 'updateCart'],
         computed: {
             cartItems () {
                 return this.computeCart()

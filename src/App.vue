@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <nav-bar :categories="categories" :purchase="amountOfItems"></nav-bar>
-    <router-view :dataset="collections" :updateCart="addToCart" :cart="cart" :purchase="totalPrice" />
+    <nav-bar :categories="categories" :amountOfItemsInCart="computeAmountOfItems"></nav-bar>
+    <router-view :dataset="collections" :updateCart="addToCart" :cart="cart" :purchaseTotalPrice="computeTotalPrice"/>
 
     <add-to-cart-modal :title="productHeading" :cost="productCost" :picture="productPicture"/>
   </div>
