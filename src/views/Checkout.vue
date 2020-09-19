@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container>
         <div class="row mt-2">
             <div class="col-sm-8">
                 <b-card header="My Cart">
@@ -68,12 +68,6 @@
                     }
                 })
                 return newCart
-            },
-            removeFromCart: function (product) {
-                const index = this.cart.indexOf(product);
-                if (index > -1) {
-                    this.cart.splice(index, 1);
-                }
             }
         }
     }
