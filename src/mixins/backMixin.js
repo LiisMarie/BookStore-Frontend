@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Data from '../assets/book_list.json'
+import axios from 'axios';
 
 Vue.mixin({
     data () {
@@ -27,9 +27,16 @@ Vue.mixin({
             // todo get from back
             return ["Fiction", "Children’s Books and Teaching", "Hobbies and Free Time", "Body and Mind", "Science and Technology", "Society and Humanities"];
         },
-        getAllBooks() {
-            // todo get from back
-            return Data.collection;
+        async getAllBooks() {
+            let books = [];
+            await axios.get('http://localhost:8080/api/data/books')
+            .then(response => {
+                JSON.stringify(response.data);
+                books = [...response.data];
+            })
+            .catch(err => console.log(err))
+            console.log(books);
+            return books;
         },
         getBookByIsbn(isbn) {
             // todo get from back
