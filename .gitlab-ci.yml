@@ -1,0 +1,43 @@
+ #Straight copy-paste from Oleg.
+ #ToDo: Basically everything.
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+build bookstore-front:
+  stage: build
+  cache:
+    paths:
+      - .gradle/wrapper
+      - .gradle/caches
+  artifacts:
+    paths:
+      - build/libs
+  tags:
+    - bookstore-front
+  script:
+    - ./gradlew assemble
+
+test bookstore-front:
+  stage: test
+  tags:
+    - bookstore-front
+  script:
+    - ./gradlew check
+
+deploy bookstore-front:
+  stage: deploy
+  only:
+    refs:
+      - master
+  tags:
+    - bookstore-front
+  script:
+    - mkdir -p ~/api-deployment
+    - rm -rf ~/api-deployment/*
+    - cp -r build/libs/. ~/api-deployment
+    - sudo service bookstroe-front restart
