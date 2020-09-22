@@ -1,6 +1,7 @@
 import "@babel/polyfill";
 import "mutationobserver-shim";
 import Vue from "vue";
+import Vuelidate from 'vuelidate';
 import "./plugins/bootstrap-vue";
 import App from "./App.vue";
 import router from "./router";
@@ -11,6 +12,8 @@ import { faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, f
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, faUser);
+
+Vue.use(Vuelidate)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

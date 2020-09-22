@@ -64,6 +64,11 @@ Vue.mixin({
                 this.cart.pop();
             }
         },
+        addBook() {
+          // todo add to real back
+          console.log("adding book");
+          alert("Form submitted!");
+        },
         replaceSpaceWithUnderscore(strToReplace) {
             return strToReplace.replaceAll(" ", "_");
         },

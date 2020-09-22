@@ -14,6 +14,7 @@
                           {{category}}
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+                  <b-nav-item href="#" @click.prevent="route_to('/add-book')">Add book</b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
 
