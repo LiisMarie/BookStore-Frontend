@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <h1>{{this.replaceUnderscoresWithSpaces(this.$route.params.category)}}</h1>
-        <div class="row mt-3">
+
+      <p v-if="!computedItems || computedItems.length === 0 ">No books to show!</p>
+
+      <div class="row mt-3">
             <div v-for="product in computedItems" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
                 <product-card :product="product" :updateCart="updateCart"></product-card>
             </div>
