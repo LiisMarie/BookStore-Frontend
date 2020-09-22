@@ -2,7 +2,7 @@
     <div class="container">
       <b-card style="max-width: 20rem;" class="mb-2 text-center">
 
-          <b-img fluid :src="product.picture" class="p-2"></b-img>
+          <b-img fluid :src="product.image" class="p-2"></b-img>
 
             <h4>
                 {{product.heading}}

@@ -7,7 +7,12 @@
                 <b-navbar-nav>
                     <b-nav-item href="#" @click.prevent="route_to('/all-products')">All books</b-nav-item>
                     <b-nav-item-dropdown text="Categories" left>
-                        <b-dropdown-item href="#" v-for="category in categories" :key="category" @click.prevent="route_to('/categories/'+category)">{{category}}</b-dropdown-item>
+                        <b-dropdown-item href="#"
+                                         v-for="category in categories"
+                                         :key="category"
+                                         @click.prevent="route_to('/categories/'+category)">
+                          {{category}}
+                        </b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
@@ -28,7 +33,7 @@
         props: ['categories', 'amountOfItemsInCart'],
         methods: {
             route_to (path) {
-                this.$router.push(path)
+                this.$router.push(this.replaceSpaceWithUnderscore(path));
             }
         }
     }

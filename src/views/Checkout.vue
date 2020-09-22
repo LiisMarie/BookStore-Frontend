@@ -5,9 +5,9 @@
                 <b-card header="My Cart">
                   <p v-if="!purchaseTotalPrice || purchaseTotalPrice.length === 0 ">No Books in the Cart!</p>
 
-                    <div class="row mt-2 md-1" v-for="product in cartItems" :key="product.Item.heading">
+                    <div class="row mt-2 md-1" v-for="product in cartItems" :key="product.Item.isbn">
                         <div class="col-sm-3">
-                          <b-img style="max-height:200px" fluid :src="product.Item.picture" class="p-2"></b-img>
+                          <b-img style="max-height:200px" fluid :src="product.Item.image" class="p-2"></b-img>
                         </div>
                         <div class="col-sm-9">
                             <div>
