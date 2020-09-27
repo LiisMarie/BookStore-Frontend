@@ -48,7 +48,7 @@ Vue.mixin({
             }
             this.productHeading = product.heading;
             this.productCost = product.cost;
-            this.productPicture = product.picture;
+            this.productPicture = product.image;
             this.$bvModal.show("addToCartModal");
         },
         removeFromCart(product) {
@@ -63,6 +63,17 @@ Vue.mixin({
             while (this.cart.length) {
                 this.cart.pop();
             }
+        },
+        addBook() {
+          // todo add to real back
+          console.log("adding book");
+          alert("Form submitted!");
+        },
+        replaceSpaceWithUnderscore(strToReplace) {
+            return strToReplace.replaceAll(" ", "_");
+        },
+        replaceUnderscoresWithSpaces(strToReplace) {
+            return strToReplace.replaceAll("_", " ");
         }
     }
 })

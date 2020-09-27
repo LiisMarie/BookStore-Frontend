@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col-sm-4">
-                <b-img fluid :src="product.picture" class="p-2"></b-img>
+                <b-img fluid :src="product.image" class="p-2"></b-img>
             </div>
             <div class="col-sm-8">
                 <h3>{{product.heading}}</h3>
@@ -26,7 +26,7 @@
                 <br>
                 <div class="row">
                     <div class="col-2">Published:</div>
-                    <div class="col-10">{{product.release_year}}</div>
+                    <div class="col-10">{{product.releaseYear}}</div>
                 </div>
                 <br>
                 <div class="row">
