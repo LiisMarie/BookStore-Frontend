@@ -64,7 +64,7 @@
 
         <!-- author -->
         <b-form-group id="input-group-author" label="Author/Authors" label-for="input-author">
-          <small>In case of multiple authors, separate them using comma <b>,</b></small>
+          <small>In case of multiple authors, separate them using comma <strong>,</strong></small>
           <b-form-input
               id="input-author"
               name="input-author"
@@ -110,7 +110,7 @@
 
         <!-- cost -->
         <b-form-group id="input-group-cost" label="Cost" label-for="input-cost">
-          <small>To separate decimal points, use period <b>.</b></small>
+          <small>To separate decimal points, use period <strong>.</strong></small>
           <b-form-input
               id="input-cost"
               name="input-cost"

@@ -22,7 +22,7 @@
         props: ['products', 'product_category', 'updateCart'],
         methods: {
             seeAll (category) {
-                this.$router.push('/categories/' + this.replaceSpaceWithUnderscore(category.genreName))
+                this.$router.push('/categories/' + this.replaceSpaceWithUnderscore(category))
             }
         }
     }

@@ -52,7 +52,8 @@ Vue.mixin({
         },
         async getBookByIsbn(isbn) {
             // todo get from back
-            return this.getAllBooks().find((item) => {
+            let allBooks = await this.getAllBooks();
+            return allBooks.find((item) => {
                 return item.isbn == isbn;
             });
         },

@@ -60,8 +60,8 @@
                 product: []
             }
         },
-        created () {
-            this.product = this.getBookByIsbn(this.$route.params.productIsbn);
+        async created () {
+            this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
         }
     }
 </script>

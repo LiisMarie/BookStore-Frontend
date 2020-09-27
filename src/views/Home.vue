@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-for="(category) in categories" :key="category">
-      <product-deck  :products="getDisplayProducts(category)" :product_category="category" :updateCart="updateCart"></product-deck>
+      <product-deck  :products="getDisplayProducts(category.genreName)" :product_category="category.genreName" :updateCart="updateCart"></product-deck>
     </div>
   </div>
 </template>
@@ -21,13 +21,13 @@
     components: {
       'product-deck': ProductDeck
     },
-    created () {
-      this.categories = this.getCategories()
+    async created () {
+      this.categories = await this.getCategories()
     },
     methods: {
       getDisplayProducts (category) {
         let productList = this.collections.filter((product) => {
-          if (product.genre === category.genreName) {
+          if (product.genre === category) {
             return product
           }
         })
