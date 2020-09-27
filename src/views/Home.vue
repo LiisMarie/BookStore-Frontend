@@ -27,7 +27,7 @@
     methods: {
       getDisplayProducts (category) {
         let productList = this.collections.filter((product) => {
-          if (product.genre === category) {
+          if (product.genre === category.genreName) {
             return product
           }
         })

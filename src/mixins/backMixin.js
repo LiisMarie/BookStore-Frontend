@@ -1,5 +1,6 @@
 import Vue from "vue";
 import axios from 'axios';
+import Data from '../assets/book_list.json';
 
 Vue.mixin({
     data () {
@@ -23,22 +24,33 @@ Vue.mixin({
         }
     },
     methods: {
-        getCategories() {
-            // todo get from back
-            return ["Fiction", "Children’s Books and Teaching", "Hobbies and Free Time", "Body and Mind", "Science and Technology", "Society and Humanities"];
+        async getCategories() {
+            let genresMap = [];
+            await axios.get('http://localhost:8080/api/genre')
+                .then(response => {
+                    let genresResponse = [...response.data];
+                    for (let i in genresResponse) {
+                        console.log(genresResponse[i])
+                        genresMap.push(genresResponse[i]);
+                    }
+                })
+                .catch(err => console.log(err))
+            return genresMap;
         },
         async getAllBooks() {
-            let books = [];
-            await axios.get('http://localhost:8080/api/data/books')
+            // todo get from back
+            //return Data.collection;
+            /*let books = [];
+            await axios.get('http://localhost:8080/api/data/book')
             .then(response => {
-                JSON.stringify(response.data);
                 books = [...response.data];
             })
             .catch(err => console.log(err))
             console.log(books);
-            return books;
+            return books;*/
+            return Data.collection;
         },
-        getBookByIsbn(isbn) {
+        async getBookByIsbn(isbn) {
             // todo get from back
             return this.getAllBooks().find((item) => {
                 return item.isbn == isbn;
@@ -72,9 +84,9 @@ Vue.mixin({
             }
         },
         addBook() {
-          // todo add to real back
-          console.log("adding book");
-          alert("Form submitted!");
+            // todo add to real back
+            console.log("adding book");
+            alert("Form submitted!");
         },
         replaceSpaceWithUnderscore(strToReplace) {
             return strToReplace.replaceAll(" ", "_");

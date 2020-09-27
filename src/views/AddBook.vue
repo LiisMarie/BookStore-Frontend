@@ -205,11 +205,9 @@ export default {
   },
   created() {
     this.genres.push({ value: null, text: "Choose..." });
-    const categories = this.getCategories();
-    var category;
-
-    for (category of categories) {
-      this.genres.push({ value: category, text: category });
+    const categoriesMap = this.getCategories();
+    for (var category of categoriesMap) {
+      this.genres.push({ value: category.genreId, text: category.genreName });
     }
   },
   methods: {

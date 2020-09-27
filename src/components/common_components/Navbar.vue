@@ -9,9 +9,9 @@
                     <b-nav-item-dropdown text="Categories" left>
                         <b-dropdown-item href="#"
                                          v-for="category in categories"
-                                         :key="category"
-                                         @click.prevent="route_to('/categories/'+category)">
-                          {{category}}
+                                         :key="category.genreName"
+                                         @click.prevent="route_to('/categories/'+category.genreName)">
+                          {{category.genreName}}
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                   <b-nav-item href="#" @click.prevent="route_to('/add-book')">Add book</b-nav-item>

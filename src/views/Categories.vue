@@ -29,9 +29,9 @@
         },
         computed: {
             computedItems () {
-                let category = this.replaceUnderscoresWithSpaces(this.$route.params.category);
+                let genreName = this.replaceUnderscoresWithSpaces(this.$route.params.category);
                 let productList = this.collections.filter((product) => {
-                    if (product.genre === category) {
+                    if (product.genre === genreName) {
                         return product
                     }
                 })
