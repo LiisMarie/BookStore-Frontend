@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar :categories="categoriesMap" :amountOfItemsInCart="computeAmountOfItems"></nav-bar>
-    <router-view :dataset="collections" :updateCart="addToCart" :cart="cart" :purchaseTotalPrice="computeTotalPrice"/>
+    <router-view :updateCart="addToCart" :cart="cart"/>
 
     <add-to-cart-modal :title="productHeading" :cost="productCost" :picture="productPicture"/>
   </div>
@@ -15,7 +15,6 @@
     name: 'App',
     data () {
       return {
-        'collections': [],
         'categoriesMap': [],
         'productHeading': "",
         'productCost': 0,
@@ -28,7 +27,6 @@
     },
     async created () {
       this.categoriesMap = await this.getCategories();
-      this.collections = await this.getAllBooks();
     }
   }
 </script>

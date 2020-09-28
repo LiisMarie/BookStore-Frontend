@@ -2,26 +2,29 @@
     <b-container>
         <div class="row mt-2">
             <div class="col-sm-8">
-                <b-card header="My Cart">
+                <b-card header="My Cart" id="cart">
+
                   <p v-if="!purchaseTotalPrice || purchaseTotalPrice.length === 0 ">No Books in the Cart!</p>
 
-                    <div class="row mt-2 md-1" v-for="product in cartItems" :key="product.Item.isbn">
+                  <div class="row mt-2 md-1" v-for="product in shoppingCart" :key="product.isbn">
                         <div class="col-sm-3">
-                          <b-img style="max-height:200px" fluid :src="product.Item.image" class="p-2"></b-img>
+                          <!-- TODO fix picture
+                          <b-img style="max-height:200px" fluid src="" :id="product.isbn" class="p-2"></b-img>
+                          -->
                         </div>
                         <div class="col-sm-9">
                             <div>
-                              <b-button size="sm" @click.prevent="removeFromCart(product.Item)" variant="danger" style="float: right"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
+                              <b-button size="sm" @click.prevent="removeFromCart(product)" variant="danger" style="float: right"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
 
-                              <h5>{{product.Item.heading}}</h5>
+                              <h5>{{ product.heading }}</h5>
 
                                 <div class="row">
                                     <div class="col-4">Author:</div>
-                                    <div class="col-8">{{product.Item.author}}</div>
+                                    <div class="col-8">{{ product.author }}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-4">Price:</div>
-                                    <div class="col-8">{{product.Item.cost}}€</div>
+                                    <div class="col-8">{{ product.cost }}€</div>
                                 </div>
 
                                 <hr>
@@ -33,9 +36,9 @@
             <div class="col-sm-4 text-center">
                 <b-card header="Pricing Details">
                     <p>Total Price:</p>
-                    <h3>{{purchaseTotalPrice}}€</h3>
+                    <h3>{{ purchaseTotalPrice }}€</h3>
                     <hr>
-                    <b-button @click="removeAllProductsFromCart" variant="outline-primary">Place Order</b-button>
+                    <b-button @click="emptyUserCart" variant="outline-primary">Place Order</b-button>
                 </b-card>
             </div>
         </div>
@@ -43,33 +46,27 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+
     export default {
         name: 'Checkout',
-        props: ['cart', 'purchaseTotalPrice', 'updateCart'],
-        computed: {
-            cartItems () {
-                return this.computeCart()
-            }
+        props: ['updateCart'],
+        beforeCreate() {
+          this.$store.dispatch('loadShoppingCart');
         },
+        computed:
+          mapState([
+              'shoppingCart',
+              'purchaseTotalPrice'
+          ]),
         methods: {
-            computeCart: function () {
-                let newCart = []
-                this.cart.forEach((item) => {
-                    let index = newCart.findIndex((element) => {
-                        return element.Item === item
-                    })
-                    if (index >= 0) {
-                        newCart[index].amount += 1
-                    } else {
-                        newCart.push({
-                            Item: item,
-                            amount: 1
-                        })
-                    }
-                })
-                return newCart
+            emptyUserCart() {
+              this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
+              this.$store.dispatch('emptyCart');
+              this.$store.dispatch('loadShoppingCart');
+              this.$router.go(0);
             }
-        }
+          }
     }
 </script>
 

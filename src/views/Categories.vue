@@ -2,10 +2,10 @@
     <div class="container">
         <h1>{{this.replaceUnderscoresWithSpaces(this.$route.params.category)}}</h1>
 
-      <p v-if="!computedItems || computedItems.length === 0 ">No books to show!</p>
+      <p v-if="!collections || collections.length === 0 ">No books to show!</p>
 
       <div class="row mt-3">
-            <div v-for="product in computedItems" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
+            <div v-for="product in collections" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
                 <product-card :product="product" :updateCart="updateCart"></product-card>
             </div>
         </div>
@@ -18,24 +18,26 @@
 
     export default {
         name: 'Categories',
-        props: ['dataset', 'updateCart'],
+        props: ['updateCart'],
         data () {
             return {
-                'collections': this.dataset
+                'collections': []
             }
         },
         components: {
             'product-card': ProductCard
         },
-        computed: {
-            computedItems () {
-                let genreName = this.replaceUnderscoresWithSpaces(this.$route.params.category);
-                let productList = this.collections.filter((product) => {
-                    if (product.genre === genreName) {
-                        return product
-                    }
-                })
-                return productList
+        watch: {
+          $route() {
+            this.loadBooks();
+          }
+        },
+        async created() {
+            await this.loadBooks();
+        },
+        methods: {
+            async loadBooks() {
+              this.collections = await this.getBooksByCategory(this.replaceUnderscoresWithSpaces(this.$route.params.category));
             }
         }
     }

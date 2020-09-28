@@ -11,10 +11,10 @@
 
   export default {
     name: "Home",
-    props: ['dataset', 'updateCart'],
+    props: ['updateCart'],
     data () {
       return {
-        'collections': this.dataset,
+        'collections': [],
         'categories': []
       }
     },
@@ -22,7 +22,8 @@
       'product-deck': ProductDeck
     },
     async created () {
-      this.categories = await this.getCategories()
+      this.categories = await this.getCategories();
+      this.collections = await this.getAllBooks();
     },
     methods: {
       getDisplayProducts (category) {

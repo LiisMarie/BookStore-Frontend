@@ -34,7 +34,8 @@
         props: ['categories', 'amountOfItemsInCart'],
         methods: {
             route_to (path) {
-                this.$router.push(this.replaceSpaceWithUnderscore(path));
+              const replacedPath = this.replaceSpaceWithUnderscore(path);
+              if (this.$route.path !== replacedPath) this.$router.push(replacedPath);
             }
         }
     }

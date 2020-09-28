@@ -13,16 +13,19 @@
 
     export default {
         name: 'AllProducts',
-        props: ['dataset', 'updateCart'],
+        props: ['updateCart'],
         data () {
-            return {
-                collections: this.dataset
-            }
+          return {
+            'collections': []
+          }
+        },
+        async created () {
+          this.collections = await this.getAllBooks();
         },
         components: {
-            'product-card': ProductCard
-        }
-    }
+              'product-card': ProductCard
+          }
+      }
 </script>
 
 <style scoped>

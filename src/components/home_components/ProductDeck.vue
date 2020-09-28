@@ -21,9 +21,9 @@
         },
         props: ['products', 'product_category', 'updateCart'],
         methods: {
-            seeAll (category) {
-                this.$router.push('/categories/' + this.replaceSpaceWithUnderscore(category))
-            }
+          seeAll(category) {
+            this.$router.push('/categories/' + this.replaceSpaceWithUnderscore(category))
+          }
         }
     }
 </script>

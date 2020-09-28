@@ -1,6 +1,5 @@
 import Vue from "vue";
-import axios from 'axios';
-import Data from '../assets/book_list.json';
+import Api from '../services/Api'
 
 Vue.mixin({
     data () {
@@ -14,23 +13,15 @@ Vue.mixin({
                 return "";
             }
             return this.cart.length;
-        },
-        computeTotalPrice () {
-            let total = 0;
-            for (let i = 0; i < this.cart.length; i++) {
-                total += Number(this.cart[i].cost);
-            }
-            return total;
         }
     },
     methods: {
         async getCategories() {
             let genresMap = [];
-            await axios.get('http://localhost:8080/api/genre')
+            await Api().get('/genre')
                 .then(response => {
                     let genresResponse = [...response.data];
                     for (let i in genresResponse) {
-                        console.log(genresResponse[i])
                         genresMap.push(genresResponse[i]);
                     }
                 })
@@ -38,34 +29,38 @@ Vue.mixin({
             return genresMap;
         },
         async getAllBooks() {
-            // todo get from back
-            //return Data.collection;
-            /*let books = [];
-            await axios.get('http://localhost:8080/api/data/book')
-            .then(response => {
-                books = [...response.data];
-            })
-            .catch(err => console.log(err))
-            console.log(books);
-            return books;*/
-            return Data.collection;
+            let books = [];
+            await Api().get('/data/books')
+                .then(response => {
+                    books = [...response.data];
+                })
+                .catch(err => console.log(err));
+            return books;
+        },
+        async getBooksByCategory(category) {
+            let books = [];
+            await Api().get('/data/books/genre/' + category)
+                .then(response => {
+                    books = [...response.data];
+                })
+                .catch(err => console.log(err));
+            return books;
         },
         async getBookByIsbn(isbn) {
-            // todo get from back
-            let allBooks = await this.getAllBooks();
-            return allBooks.find((item) => {
-                return item.isbn == isbn;
-            });
+            let book = [];
+            await Api().get('/data/books/isbn/' + isbn)
+                .then(response => {
+                   book = response.data;
+                })
+                .catch(err => console.log(err));
+            return book;
         },
-        getCart() {
-            // todo get from back
-            return this.cart;
-        },
-        addToCart(product) {
-            // todo add to back
-            if (!this.cart.includes(product)) {
-                this.cart.push(product);
+        async addToCart(product) {
+            const params = {
+                userId: 1,
+                bookId: product.bookId
             }
+            await Api().post('/shopping', params).catch(err => console.log(err));
             this.productHeading = product.heading;
             this.productCost = product.cost;
             this.productPicture = product.image;
@@ -73,16 +68,15 @@ Vue.mixin({
         },
         removeFromCart(product) {
             // todo delete from back
-            const index = this.cart.indexOf(product);
-            if (index > -1) {
-                this.cart.splice(index, 1);
-            }
+            console.log("product to delete " + product);
         },
-        removeAllProductsFromCart() {
-            // todo remove from back
-            while (this.cart.length) {
-                this.cart.pop();
-            }
+        async removeAllProductsFromCart() {
+            await Api().delete('/shopping/1')
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(err => console.log(err));
+            // todo display a modal
         },
         addBook() {
             // todo add to real back
@@ -94,6 +88,12 @@ Vue.mixin({
         },
         replaceUnderscoresWithSpaces(strToReplace) {
             return strToReplace.replaceAll("_", " ");
+        },
+        placeBookPicture(imageId, pictureByteArray) {
+            document.getElementById(imageId).src = this.getSrcForPictureFromByteArray(pictureByteArray);
+        },
+        getSrcForPictureFromByteArray(pictureByteArray) {
+            return "data:image/png;base64," + pictureByteArray;
         }
     }
 })
