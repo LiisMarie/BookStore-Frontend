@@ -47,7 +47,8 @@ export default new Vuex.Store({
     },
     deleteItemFromCart() {
       console.log("removing book with id:  " + this.productToDelete);
-      // todo remove item from cart
+      Api().delete('/shopping/user/' + this.loggedInUserId + "/book/" + this.productToDelete)
+          .catch(err => console.log(err));
     }
   },
   modules: {}

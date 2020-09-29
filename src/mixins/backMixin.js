@@ -2,15 +2,10 @@ import Vue from "vue";
 import Api from '../services/Api'
 
 Vue.mixin({
-    data () {
-        return {
-            'cart': [],
-        }
-    },
     methods: {
         async getCategories() {
             let genresMap = [];
-            await Api().get('/genre')
+            await Api().get('/genres')
                 .then(response => {
                     let genresResponse = [...response.data];
                     for (let i in genresResponse) {
@@ -58,10 +53,32 @@ Vue.mixin({
             this.productPicture = product.image;
             this.$bvModal.show("addToCartModal");
         },
-        addBook() {
-            // todo add to real back
-            console.log("adding book");
+        async addBook(form) {
+            const params = {
+                isbn: form.isbn,
+                heading: form.heading,
+                releaseYear: form.releaseYear,
+                publisher: form.publisher,
+                author: form.author,
+                genre: form.genre,
+                description: form.description,
+                cost: form.cost
+            }
+            await Api().post('/books', params)
+                .then(response => {
+                    console.log(response.data);
+                    this.addImage(response.data.bookId, form.image);
+                })
+                .catch(err => console.log(err));
+            // todo create modal
             alert("Form submitted!");
+        },
+        async addImage(bookId, image) {
+            const imgBlob = new Blob([image], { type: 'image/png' } );
+            var formData = new FormData();
+            formData.append('imageFile', imgBlob);
+            await Api().post('/images/' + bookId, formData)
+                .catch(err => console.log(err));
         },
         replaceSpaceWithUnderscore(strToReplace) {
             return strToReplace.replaceAll(" ", "_");
