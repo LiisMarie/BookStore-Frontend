@@ -125,7 +125,22 @@
         </b-form-group>
 
         <!-- image -->
-        <!-- DOTO -->
+        <b-form-group id="input-group-image" label="Cover photo" label-for="input-image">
+          <b-form-file
+              accept="image/*"
+              id="input-image"
+              name="input-image"
+              v-model="$v.form.image.$model"
+              :state="validateState('image')"
+              aria-describedby="input-image-live-feedback"
+              placeholder="Choose a image or drop it here..."
+              drop-placeholder="Drop image here..."
+          ></b-form-file>
+
+          <b-form-invalid-feedback
+              id="input-image-live-feedback"
+          >This is a required field and only images type of files can be uploaded.</b-form-invalid-feedback>
+        </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
         <b-button class="ml-2" @click="resetForm()">Reset</b-button>
@@ -200,13 +215,22 @@ export default {
         containsNumbersAndTwoDecimalPoints(cost) {
           return /^\d+(\.\d{1,2})?$/.test(cost);
         }
+      },
+      image: {
+        required,
+        isImage(image) {
+          if (image != null) {
+            return image.type.startsWith("image/");
+          }
+          return false;
+        }
       }
     }
   },
-  created() {
+  async created() {
     this.genres.push({ value: null, text: "Choose..." });
-    const categoriesMap = this.getCategories();
-    for (var category of categoriesMap) {
+    const categoriesMap = await this.getCategories();
+    for (const category of categoriesMap) {
       this.genres.push({ value: category.genreId, text: category.genreName });
     }
   },
@@ -230,8 +254,7 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-
-      this.addBook();
+      this.addBook(this.form);
     }
   }
 }

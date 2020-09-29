@@ -69,10 +69,10 @@
             },
             removeFromCart(product) {
               console.log("product to delete " + product.bookId);
+              this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
               this.$store.commit('SET_ProductToDelete', {productToDelete: product.bookId});
               this.$store.dispatch('deleteItemFromCart');
-              //this.$router.go(0);
-              this.$forceUpdate();
+              this.$router.go(0);
             }
           }
     }

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar :categories="categoriesMap"></nav-bar>
-    <router-view :updateCart="addToCart" :cart="cart"/>
+    <router-view :updateCart="addToCart"/>
 
     <add-to-cart-modal :title="productHeading" :cost="productCost" :picture="productPicture"/>
   </div>
