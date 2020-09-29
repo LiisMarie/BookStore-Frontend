@@ -1,11 +1,12 @@
 <template>
     <div class="container">
-        <div class="row mt-4">
-            <div class="col-sm-4">
-              <!-- TODO fix picture
-              <b-img fluid :id="product.isbn" src="" class="p-2"></b-img>
-              -->
+
+        <div v-if="product" class="row mt-4">
+
+          <div class="col-sm-4">
+              <b-img fluid :id="product.isbn" :src="'data:image/png;base64,' + product.image" class="p-2"></b-img>
             </div>
+
             <div class="col-sm-8">
                 <h3>{{product.heading}}</h3>
 
@@ -64,7 +65,6 @@
         },
         async created () {
             this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
-            this.placeBookPicture(this.product.isbn, this.product.image);
         }
     }
 </script>

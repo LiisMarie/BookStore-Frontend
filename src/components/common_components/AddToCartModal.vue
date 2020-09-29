@@ -9,9 +9,9 @@
     <b-row>
 
       <b-col>
-        <!-- TODO fix picture
-        <b-img id="BookPicture" fluid src=""/>
-        -->
+
+        <b-img id="BookPicture" fluid :src="'data:image/png;base64,' + picture"/>
+
       </b-col>
 
       <b-col>
@@ -36,9 +36,6 @@ export default {
     goToCart () {
       this.$router.push('/checkout')
     }
-  },
-  beforeUpdate() {
-    this.placeBookPicture("BookPicture", this.picture);
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div v-for="(category) in categories" :key="category">
-      <product-deck  :products="getDisplayProducts(category.genreName)" :product_category="category.genreName" :updateCart="updateCart"></product-deck>
+    <div v-for="(category) in categories" :key="category.genreName">
+      <product-deck  :products="getDisplayProducts(category.genreName)" :productCategory="category.genreName" :updateCart="updateCart"></product-deck>
     </div>
   </div>
 </template>

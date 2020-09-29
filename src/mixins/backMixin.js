@@ -7,14 +7,6 @@ Vue.mixin({
             'cart': [],
         }
     },
-    computed: {
-        computeAmountOfItems() {
-            if (this.cart.length === 0) {
-                return "";
-            }
-            return this.cart.length;
-        }
-    },
     methods: {
         async getCategories() {
             let genresMap = [];
@@ -66,18 +58,6 @@ Vue.mixin({
             this.productPicture = product.image;
             this.$bvModal.show("addToCartModal");
         },
-        removeFromCart(product) {
-            // todo delete from back
-            console.log("product to delete " + product);
-        },
-        async removeAllProductsFromCart() {
-            await Api().delete('/shopping/1')
-                .then(response => {
-                    console.log(response.data);
-                })
-                .catch(err => console.log(err));
-            // todo display a modal
-        },
         addBook() {
             // todo add to real back
             console.log("adding book");
@@ -90,10 +70,7 @@ Vue.mixin({
             return strToReplace.replaceAll("_", " ");
         },
         placeBookPicture(imageId, pictureByteArray) {
-            document.getElementById(imageId).src = this.getSrcForPictureFromByteArray(pictureByteArray);
-        },
-        getSrcForPictureFromByteArray(pictureByteArray) {
-            return "data:image/png;base64," + pictureByteArray;
+            document.getElementById(imageId).src = "data:image/png;base64," + pictureByteArray;
         }
     }
 })

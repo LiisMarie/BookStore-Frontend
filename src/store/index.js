@@ -9,7 +9,7 @@ export default new Vuex.Store({
     loggedInUserId: Number,
     shoppingCart: [],
     purchaseTotalPrice: 0,
-    amountOfItemsInCart: 0,
+    productToDelete: Number
   },
   getters: {
     shoppingCart: state => {
@@ -22,14 +22,14 @@ export default new Vuex.Store({
     },
     SET_ShoppingCart (state, shoppingCart) {
       state.shoppingCart = shoppingCart;
-      var totalPrice = 0;
-      var amountOfItems = 0;
-      for (var i in shoppingCart) {
+      let totalPrice = 0;
+      for (const i in shoppingCart) {
         totalPrice += shoppingCart[i].cost;
-        amountOfItems ++;
       }
       state.purchaseTotalPrice = totalPrice;
-      state.amountOfItemsInCart = amountOfItems;
+    },
+    SET_ProductToDelete (state, { productToDelete }) {
+      this.productToDelete = productToDelete;
     }
   },
   actions: {
@@ -42,9 +42,12 @@ export default new Vuex.Store({
           })
     },
     emptyCart () {
-      console.log("emptying cart that belongs to user with id:  " + this.loggedInUserId);
       Api().delete('/shopping/' + this.loggedInUserId)
           .catch(err => console.log(err));
+    },
+    deleteItemFromCart() {
+      console.log("removing book with id:  " + this.productToDelete);
+      // todo remove item from cart
     }
   },
   modules: {}
