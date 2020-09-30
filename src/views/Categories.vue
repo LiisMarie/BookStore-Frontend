@@ -6,7 +6,7 @@
 
       <div class="row mt-3">
             <div v-for="product in collections" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
-                <product-card :product="product" :updateCart="updateCart"></product-card>
+                <product-card :product="product" :updateCart="updateCart" :deleteBookModal="deleteBookModal"></product-card>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
     export default {
         name: 'Categories',
-        props: ['updateCart'],
+        props: ['updateCart', 'deleteBookModal'],
         data () {
             return {
                 'collections': []

@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div v-for="(category) in categories" :key="category.genreName">
-      <product-deck  :products="getDisplayProducts(category.genreName)" :productCategory="category.genreName" :updateCart="updateCart"></product-deck>
+      <product-deck  :products="getDisplayProducts(category.genreName)"
+                     :productCategory="category.genreName"
+                     :updateCart="updateCart"
+                     :deleteBookModal="deleteBookModal"/>
     </div>
   </div>
 </template>
@@ -11,7 +14,7 @@
 
   export default {
     name: "Home",
-    props: ['updateCart'],
+    props: ['updateCart', 'deleteBookModal'],
     data () {
       return {
         'collections': [],

@@ -89,7 +89,18 @@ Vue.mixin({
                     alert("An error occurred while posting image!");
                 });
         },
-
+        // DELETE
+        displayDeleteBookModal(product) {
+            this.productHeading = product.heading;
+            this.productPicture = product.image;
+            this.productId = product.bookId;
+            this.$bvModal.show("deleteProductModal");
+        },
+        async deleteBookById(bookId) {
+            await Api().delete('/books/' + bookId)
+                .catch(err => console.log(err));
+            this.$router.go(0);
+        },
         replaceSpaceWithUnderscore(strToReplace) {
             return strToReplace.replaceAll(" ", "_");
         },

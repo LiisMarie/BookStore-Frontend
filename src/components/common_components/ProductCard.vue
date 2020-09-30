@@ -13,8 +13,9 @@
 
             <p>Price: {{ product.cost }}€</p>
 
-            <b-button variant="info" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> </b-button>
-            <b-button variant="primary" @click="goToDetails(product.isbn)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'info']"/> </b-button>
+            <b-button size="sm" variant="info" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> </b-button>
+            <b-button size="sm" variant="primary" @click="goToDetails(product.isbn)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'info']"/> </b-button>
+            <b-button size="sm" variant="danger" @click="deleteBookModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
 
       </b-card>
     </div>
@@ -23,7 +24,7 @@
 <script>
     export default {
         name: 'ProductCard',
-        props: ['product', 'updateCart'],
+        props: ['product', 'updateCart', 'deleteBookModal'],
         methods: {
             goToDetails (isbn) {
                 this.$router.push('/products/' + isbn)

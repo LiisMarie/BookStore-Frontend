@@ -1,7 +1,9 @@
 <template>
     <div class="container">
 
-        <div v-if="product" class="row mt-4">
+        <h4 v-if="product.length === 0" class="row mt-4">Unfortunately, we don't have a book with ISBN {{this.$route.params.productIsbn}}</h4>
+
+        <div v-if="product.length !== 0" class="row mt-4">
 
           <div class="col-sm-4">
               <b-img fluid :id="product.isbn" :src="'data:image/png;base64,' + product.image" class="p-2"></b-img>
@@ -48,7 +50,10 @@
 
                 <p>{{product.description}}</p>
                 <hr>
-                <b-btn variant="primary" @click.prevent="updateCart(product)">Add to Cart</b-btn>
+
+                <b-btn variant="primary" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> Add to Cart</b-btn>
+                <b-button variant="danger" @click="deleteBookModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/> Delete book</b-button>
+
             </div>
         </div>
     </div>
@@ -57,7 +62,7 @@
 <script>
     export default {
         name: 'ProductDetails',
-        props: ['updateCart'],
+        props: ['updateCart', 'deleteBookModal'],
         data () {
             return {
                 product: []
