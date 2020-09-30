@@ -40,6 +40,13 @@ const routes = [
     name: "Add book",
     component: () =>
         import("../views/AddBook.vue")
+  },
+  {
+    path: "/edit-book/:productIsbn",
+    name: "Edit book",
+    component: () =>
+        import("../views/EditBook.vue"),
+    props: true
   }
 ];
 

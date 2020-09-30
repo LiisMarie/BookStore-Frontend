@@ -8,10 +8,10 @@ import router from "./router";
 import store from "./store";
 import "./mixins/backMixin";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, faUser} from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, faUser, faEdit} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, faUser);
+library.add(faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, faUser, faEdit);
 
 Vue.use(Vuelidate)
 

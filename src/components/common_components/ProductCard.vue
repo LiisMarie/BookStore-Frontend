@@ -13,8 +13,9 @@
 
             <p>Price: {{ product.cost }}€</p>
 
-            <b-button size="sm" variant="info" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> </b-button>
-            <b-button size="sm" variant="primary" @click="goToDetails(product.isbn)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'info']"/> </b-button>
+            <b-button size="sm" variant="success" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/></b-button>
+            <b-button size="sm" variant="info" @click="goToDetails(product.isbn)" style="margin-left: 10px"> <font-awesome-icon :icon="['fas', 'info']"/> </b-button>
+            <b-button size="sm" variant="secondary" @click="goToEditBook(product.isbn)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'edit']"/></b-button>
             <b-button size="sm" variant="danger" @click="deleteBookModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/></b-button>
 
       </b-card>
@@ -28,6 +29,9 @@
         methods: {
             goToDetails (isbn) {
                 this.$router.push('/products/' + isbn)
+            },
+            goToEditBook (isbn) {
+                this.$router.push('/edit-book/' + isbn)
             }
         },
         mounted() {

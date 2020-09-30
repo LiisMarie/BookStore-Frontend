@@ -68,25 +68,51 @@ Vue.mixin({
             }
             await Api().post('/books', params)
                 .then(response => {
-                    this.addImage(response.data.bookId, form.image);
+                    this.addImage(response.data.bookId, form.isbn, form.image, false);
                 })
                 .catch(err => {
                     console.log(err);
                     alert("An error occurred while posting book!")
                 });
         },
-        async addImage(bookId, image) {
+        async addImage(bookId, bookIsbn, image, editingBook) {
             const imgBlob = new Blob([image], { type: 'image/png' });
             const formData = new FormData();
             formData.append('imageFile', imgBlob);
             await Api().post('/images/' + bookId, formData)
                 .then(() => {
-                    alert("Book added successfully!");
-                    this.$router.go(0);
+                    if (editingBook) {
+                        this.$router.push('/products/' + bookIsbn);
+                    } else {
+                        alert("Book added successfully!");
+                        this.$router.go(0);
+                    }
                 })
                 .catch(err => {
                     console.log(err);
                     alert("An error occurred while posting image!");
+                });
+        },
+        // UPDATE
+        async updateBook(form, bookId) {
+            console.log("updateForm  : " + form);
+            const params = {
+                isbn: form.isbn,
+                heading: form.heading,
+                releaseYear: form.releaseYear,
+                publisher: form.publisher,
+                author: form.author,
+                genre: form.genre,
+                description: form.description,
+                cost: form.cost
+            }
+            await Api().put('/books/' + bookId, params)
+                .then(() => {
+                    this.addImage(bookId, form.isbn, form.image, true);
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("An error occurred while updating book!")
                 });
         },
         // DELETE
@@ -101,6 +127,7 @@ Vue.mixin({
                 .catch(err => console.log(err));
             this.$router.go(0);
         },
+        // HELPERS
         replaceSpaceWithUnderscore(strToReplace) {
             return strToReplace.replaceAll(" ", "_");
         },

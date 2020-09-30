@@ -51,8 +51,9 @@
                 <p>{{product.description}}</p>
                 <hr>
 
-                <b-btn variant="primary" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> Add to Cart</b-btn>
-                <b-button variant="danger" @click="deleteBookModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/> Delete book</b-button>
+                <b-button variant="success" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> Add to Cart</b-button>
+                <b-button variant="secondary" @click="goToEditBook(product.isbn)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'edit']"/> Edit</b-button>
+                <b-button variant="danger" @click="deleteBookModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/> Delete</b-button>
 
             </div>
         </div>
@@ -70,6 +71,11 @@
         },
         async created () {
             this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
+        },
+        methods: {
+          goToEditBook (isbn) {
+            this.$router.push('/edit-book/' + isbn)
+          }
         }
     }
 </script>
