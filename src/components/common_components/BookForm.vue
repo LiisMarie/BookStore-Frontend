@@ -133,7 +133,7 @@
               v-model="$v.form.image.$model"
               :state="validateState('image')"
               aria-describedby="input-image-live-feedback"
-              placeholder="Choose a image or drop it here..."
+              :placeholder="operation === 'add'? 'Choose a image or drop it here...' : 'Click to change image'"
               drop-placeholder="Drop image here..."
           ></b-form-file>
 
@@ -235,7 +235,6 @@ export default {
     for (const category of categoriesMap) {
       this.genres.push({ value: category.genreId, text: category.genreName });
     }
-    console.log(this.$route.params.productIsbn)
     this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
 
     if (this.operation === 'edit') {
@@ -252,10 +251,8 @@ export default {
         }
       }
 
-      // todo fix: picture gets lost when not updated during editing book
-      const bytes = new Uint8Array(this.product.image);
-      const blob = new Blob([bytes]);
-      this.form.image = new File([blob], this.product.isbn, { lastModified: new Date().getTime(), type: 'image/png' });
+      this.form.image = this.base64ToFile(this.product.image, "tempName.png", "image/png");
+      this.$v.form.$touch();
     }
   },
   methods: {
