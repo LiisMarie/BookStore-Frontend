@@ -3,6 +3,7 @@ import Api from '../services/Api'
 
 Vue.mixin({
     methods: {
+        // READ
         async getCategories() {
             let genresMap = [];
             await Api().get('/genres')
@@ -42,6 +43,7 @@ Vue.mixin({
                 .catch(err => console.log(err));
             return book;
         },
+        // CREATE
         async addToCart(product) {
             const params = {
                 userId: 1,
@@ -66,20 +68,28 @@ Vue.mixin({
             }
             await Api().post('/books', params)
                 .then(response => {
-                    console.log(response.data);
                     this.addImage(response.data.bookId, form.image);
                 })
-                .catch(err => console.log(err));
-            // todo create modal
-            alert("Form submitted!");
+                .catch(err => {
+                    console.log(err);
+                    alert("An error occurred while posting book!")
+                });
         },
         async addImage(bookId, image) {
-            const imgBlob = new Blob([image], { type: 'image/png' } );
-            var formData = new FormData();
+            const imgBlob = new Blob([image], { type: 'image/png' });
+            const formData = new FormData();
             formData.append('imageFile', imgBlob);
             await Api().post('/images/' + bookId, formData)
-                .catch(err => console.log(err));
+                .then(() => {
+                    alert("Book added successfully!");
+                    this.$router.go(0);
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("An error occurred while posting image!");
+                });
         },
+
         replaceSpaceWithUnderscore(strToReplace) {
             return strToReplace.replaceAll(" ", "_");
         },
