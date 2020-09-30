@@ -41,9 +41,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .modal-title {
-    width: 100%;
-    text-align: center;
-    color: #00A86B;
-  }
+
 </style>
