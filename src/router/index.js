@@ -7,6 +7,7 @@ import ProductDetails from "@/views/ProductDetails";
 import Checkout from "@/views/Checkout";
 import AddBook from "@/views/AddBook";
 import EditBook from "@/views/EditBook";
+import SearchProducts from "@/views/SearchProducts";
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,12 @@ const routes = [
     path: "/edit-book/:productIsbn",
     name: "Edit book",
     component: EditBook,
+    props: true
+  },
+  {
+    path: "/search-books/:searchInput",
+    name: "Search books",
+    component: SearchProducts,
     props: true
   }
 ];

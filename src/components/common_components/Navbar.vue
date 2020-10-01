@@ -1,10 +1,15 @@
 <template>
     <b-navbar sticky toggleable="md" type="dark" variant="info">
         <div class="container">
+
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
             <b-navbar-brand href="#" @click.prevent="route_to('/')"><font-awesome-icon :icon="['fas', 'book']"/> BookStore</b-navbar-brand>
+
             <b-collapse is-nav id="nav_collapse">
+
                 <b-navbar-nav>
+
                     <b-nav-item href="#" @click.prevent="route_to('/all-products')">All books</b-nav-item>
                     <b-nav-item-dropdown text="Categories" left>
                         <b-dropdown-item href="#"
@@ -14,8 +19,13 @@
                           {{category.genreName}}
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+
                   <b-nav-item href="#" @click.prevent="route_to('/add-book')">Add book</b-nav-item>
+
+                  <b-nav-item href="#" @click.prevent="route_to('/search-books/_')">Search</b-nav-item>
+
                 </b-navbar-nav>
+
             </b-collapse>
 
           <b-navbar-nav is-nav class="ml-auto mr-1 float-right">

@@ -43,6 +43,15 @@ Vue.mixin({
                 .catch(err => console.log(err));
             return book;
         },
+        async getBooksBySearch(searchInput) {
+            let book = [];
+            await Api().get('/data/search/' + searchInput)
+                .then(response => {
+                    book = response.data;
+                })
+                .catch(err => console.log(err));
+            return book;
+        },
         // CREATE
         async addToCart(product) {
             const params = {

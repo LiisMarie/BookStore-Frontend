@@ -1,5 +1,6 @@
 <template>
 
+  <b-container>
     <div class="row mt-3">
       <p v-if="!collections || collections.length === 0 ">No books to show!</p>
 
@@ -7,6 +8,7 @@
         <product-card :product="product" :updateCart="updateCart" :deleteBookModal="deleteBookModal"/>
       </div>
     </div>
+  </b-container>
 
 </template>
 
