@@ -26,7 +26,7 @@ export default new Vuex.Store({
       for (const i in shoppingCart) {
         totalPrice += shoppingCart[i].cost;
       }
-      state.purchaseTotalPrice = totalPrice;
+      state.purchaseTotalPrice = totalPrice.toFixed(2);
     },
     SET_ProductToDelete (state, { productToDelete }) {
       this.productToDelete = productToDelete;
