@@ -1,7 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Categories from "../views/Categories"
+import Home from "@/views/Home.vue";
+import AllProducts from "@/views/AllProducts.vue";
+import Categories from "@/views/Categories";
+import ProductDetails from "@/views/ProductDetails";
+import Checkout from "@/views/Checkout";
+import AddBook from "@/views/AddBook";
+import EditBook from "@/views/EditBook";
 
 Vue.use(VueRouter);
 
@@ -14,8 +19,7 @@ const routes = [
   {
     path: "/all-products",
     name: "AllProducts",
-    component: () =>
-        import("../views/AllProducts.vue")
+    component: AllProducts
   },
   {
     path: '/categories/:category',
@@ -26,26 +30,22 @@ const routes = [
   {
     path: "/products/:productIsbn",
     name: "ProductDetails",
-    component: () =>
-        import("../views/ProductDetails.vue")
+    component: ProductDetails
   },
   {
     path: "/checkout",
     name: "Checkout",
-    component: () =>
-        import("../views/Checkout.vue")
+    component: Checkout
   },
   {
     path: "/add-book",
     name: "Add book",
-    component: () =>
-        import("../views/AddBook.vue")
+    component: AddBook
   },
   {
     path: "/edit-book/:productIsbn",
     name: "Edit book",
-    component: () =>
-        import("../views/EditBook.vue"),
+    component: EditBook,
     props: true
   }
 ];
