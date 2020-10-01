@@ -139,7 +139,7 @@
 
           <b-form-invalid-feedback
               id="input-image-live-feedback"
-          >This is a required field and only images type of files can be uploaded.</b-form-invalid-feedback>
+          >This is a required field and only images type of files can be uploaded. Image size can not exceed 1MB.</b-form-invalid-feedback>
         </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
@@ -225,6 +225,10 @@ export default {
             return image.type.startsWith("image/");
           }
           return false;
+        },
+        isNotTooBig(image) {
+          console.log("fileSize:  "+image.size)
+          return image.size <= 1024 * 1024;
         }
       }
     }

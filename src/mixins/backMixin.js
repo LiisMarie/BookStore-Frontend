@@ -78,7 +78,7 @@ Vue.mixin({
         async addImage(bookId, bookIsbn, image, editingBook) {
             const imgBlob = new Blob([image], { type: 'image/png' });
             const formData = new FormData();
-            formData.append('imageFile', imgBlob);
+            formData.append('imageFile', imgBlob, bookIsbn);
             await Api().post('/images/' + bookId, formData)
                 .then(() => {
                     if (editingBook) {
