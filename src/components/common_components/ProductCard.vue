@@ -11,7 +11,7 @@
                 Author: {{ product.author }}
             </p>
 
-            <p>Price: {{ product.cost }}€</p>
+            <p>Price: {{ product.cost.toFixed(2) }}€</p>
 
             <b-button size="sm" variant="success" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/></b-button>
             <b-button size="sm" variant="info" @click="goToDetails(product.isbn)" style="margin-left: 10px"> <font-awesome-icon :icon="['fas', 'info']"/> </b-button>

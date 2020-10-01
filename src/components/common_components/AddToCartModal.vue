@@ -16,7 +16,7 @@
 
       <b-col>
         <h4>{{ title }}</h4>
-        <h5>{{ cost }} €</h5>
+        <h5>{{ cost.toFixed(2) }} €</h5>
       </b-col>
 
     </b-row>

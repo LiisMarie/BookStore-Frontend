@@ -43,7 +43,7 @@
 
                 <div class="row">
                     <div class="col-2">Price:</div>
-                    <div class="col-10">{{product.cost}}€</div>
+                    <div class="col-10">{{product.cost.toFixed(2)}}€</div>
                 </div>
 
                 <hr>
