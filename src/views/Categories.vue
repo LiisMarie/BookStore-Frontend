@@ -1,20 +1,15 @@
 <template>
-    <div class="container">
-        <h1>{{this.replaceUnderscoresWithSpaces(this.$route.params.category)}}</h1>
 
-      <p v-if="!collections || collections.length === 0 ">No books to show!</p>
+    <b-container>
+      <h1>{{this.replaceUnderscoresWithSpaces(this.$route.params.category)}}</h1>
 
-      <div class="row mt-3">
-            <div v-for="product in collections" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
-                <product-card :product="product" :updateCart="updateCart" :deleteBookModal="deleteBookModal"></product-card>
-            </div>
-        </div>
-    </div>
+      <products-display :updateCart="updateCart" :deleteBookModal="deleteBookModal" :collections="this.collections"/>
+    </b-container>
 
 </template>
 
 <script>
-    import ProductCard from '../components/common_components/ProductCard'
+    import ProductsDisplay from '../components/common_components/ProductsDisplay'
 
     export default {
         name: 'Categories',
@@ -25,7 +20,7 @@
             }
         },
         components: {
-            'product-card': ProductCard
+            'products-display': ProductsDisplay
         },
         watch: {
           $route() {

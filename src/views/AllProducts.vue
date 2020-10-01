@@ -1,15 +1,15 @@
 <template>
-    <div class="container">
-        <div class="row mt-3">
-            <div v-for="(product) in collections" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
-                <product-card :product="product" :updateCart="updateCart" :deleteBookModal="deleteBookModal"></product-card>
-            </div>
-        </div>
-    </div>
+
+  <b-container>
+    <h1>All books</h1>
+
+    <products-display :updateCart="updateCart" :deleteBookModal="deleteBookModal" :collections="this.collections"/>
+  </b-container>
+
 </template>
 
 <script>
-    import ProductCard from '../components/common_components/ProductCard'
+    import ProductsDisplay from '../components/common_components/ProductsDisplay'
 
     export default {
         name: 'AllProducts',
@@ -23,8 +23,8 @@
           this.collections = await this.getAllBooks();
         },
         components: {
-              'product-card': ProductCard
-          }
+              'products-display': ProductsDisplay
+        }
       }
 </script>
 
