@@ -4,7 +4,7 @@
         <b-card-body>
             <b-card-group deck class="row">
                 <div class="col-sm-6 col-md-4" v-for="product in products" :key="product.isbn">
-                    <product-card :product="product" :updateCart="updateCart" :deleteBookModal="deleteBookModal"></product-card>
+                    <product-card :product="product" :updateCart="updateCart" :deleteProductModal="deleteProductModal"></product-card>
                 </div>
             </b-card-group>
         </b-card-body>
@@ -19,7 +19,7 @@
         components: {
             'product-card': ProductCard
         },
-        props: ['products', 'productCategory', 'updateCart', 'deleteBookModal'],
+        props: ['products', 'productCategory', 'updateCart', 'deleteProductModal'],
         methods: {
           seeAll(category) {
             this.$router.push('/categories/' + this.replaceSpaceWithUnderscore(category))

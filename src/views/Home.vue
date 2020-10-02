@@ -4,7 +4,7 @@
       <product-deck  :products="getDisplayProducts(category.genreName)"
                      :productCategory="category.genreName"
                      :updateCart="updateCart"
-                     :deleteBookModal="deleteBookModal"/>
+                     :deleteProductModal="deleteProductModal"/>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@
         'categories': []
       }
     },
-    props: ['updateCart', 'deleteBookModal'],
+    props: ['updateCart', 'deleteProductModal'],
     async created () {
       this.categories = await this.getCategories();
       this.collections = await this.getAllBooks();

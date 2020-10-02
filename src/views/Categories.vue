@@ -3,7 +3,7 @@
     <b-container>
       <h1>{{this.replaceUnderscoresWithSpaces(this.$route.params.category)}}</h1>
 
-      <products-display :updateCart="updateCart" :deleteBookModal="deleteBookModal" :collections="this.collections"/>
+      <products-display :updateCart="updateCart" :deleteProductModal="deleteProductModal" :collections="this.collections"/>
     </b-container>
 
 </template>
@@ -21,7 +21,7 @@
             'collections': []
           }
         },
-        props: ['updateCart', 'deleteBookModal'],
+        props: ['updateCart', 'deleteProductModal'],
         methods: {
           async loadBooks() {
             this.collections = await this.getBooksByCategory(this.replaceUnderscoresWithSpaces(this.$route.params.category));

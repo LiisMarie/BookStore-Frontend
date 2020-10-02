@@ -5,8 +5,8 @@ import AllProducts from "@/views/AllProducts.vue";
 import Categories from "@/views/Categories";
 import ProductDetails from "@/views/ProductDetails";
 import Checkout from "@/views/Checkout";
-import AddBook from "@/views/AddBook";
-import EditBook from "@/views/EditBook";
+import AddProduct from "@/views/AddProduct";
+import EditProduct from "@/views/EditProduct";
 import SearchProducts from "@/views/SearchProducts";
 
 Vue.use(VueRouter);
@@ -41,12 +41,12 @@ const routes = [
   {
     path: "/add-book",
     name: "Add book",
-    component: AddBook
+    component: AddProduct
   },
   {
     path: "/edit-book/:productIsbn",
     name: "Edit book",
-    component: EditBook,
+    component: EditProduct,
     props: true
   },
   {

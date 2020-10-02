@@ -5,7 +5,7 @@
       <p v-if="!collections || collections.length === 0 ">No books to show!</p>
 
       <div v-for="(product) in collections" :key="product.isbn" class="col-sm-6 col-md-4 col-lg-3">
-        <product-card :product="product" :updateCart="updateCart" :deleteBookModal="deleteBookModal"/>
+        <product-card :product="product" :updateCart="updateCart" :deleteProductModal="deleteProductModal"/>
       </div>
     </div>
   </b-container>
@@ -20,7 +20,7 @@ export default {
   components: {
     'product-card': ProductCard
   },
-  props: ['updateCart', 'deleteBookModal', 'collections'],
+  props: ['updateCart', 'deleteProductModal', 'collections'],
   watch: {
     'collections' () {
       this.$emit('update:collections', this.collections)

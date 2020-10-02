@@ -19,7 +19,7 @@
         <h5>Search results for: {{ this.cleanedSearchInput }}</h5>
 
 
-      <products-display :updateCart="updateCart" :deleteBookModal="deleteBookModal" :collections="this.collections"/>
+      <products-display :updateCart="updateCart" :deleteProductModal="deleteProductModal" :collections="this.collections"/>
     </div>
   </b-container>
 
@@ -40,7 +40,7 @@ export default {
       'userInput': ''
     }
   },
-  props: ['updateCart', 'deleteBookModal'],
+  props: ['updateCart', 'deleteProductModal'],
   methods: {
     isUserInputPresent() {
       return this.cleanedSearchInput.trim();

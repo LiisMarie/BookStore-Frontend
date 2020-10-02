@@ -173,8 +173,7 @@ Vue.mixin({
                 }
                 byteArrays[sliceIndex] = new Uint8Array(bytes);
             }
-            const file = new File(byteArrays, tempfilename, { type: contentType });
-            return file;
+            return new File(byteArrays, tempfilename, {type: contentType});
         }
     }
 })

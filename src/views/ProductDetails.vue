@@ -53,7 +53,7 @@
 
                 <b-button variant="success" @click.prevent="updateCart(product)"><font-awesome-icon :icon="['fas', 'cart-plus']"/> Add to Cart</b-button>
                 <b-button variant="secondary" @click="goToEditBook(product.isbn)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'edit']"/> Edit</b-button>
-                <b-button variant="danger" @click="deleteBookModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/> Delete</b-button>
+                <b-button variant="danger" @click="deleteProductModal(product)" style="margin-left: 10px"><font-awesome-icon :icon="['fas', 'trash']"/> Delete</b-button>
 
             </div>
         </div>
@@ -68,7 +68,7 @@
                 product: []
             }
         },
-      props: ['updateCart', 'deleteBookModal'],
+      props: ['updateCart', 'deleteProductModal'],
         methods: {
           goToEditBook (isbn) {
             this.$router.push('/edit-book/' + isbn)

@@ -5,7 +5,7 @@ import Vuelidate from "vuelidate";
 import "./plugins/bootstrap-vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store/store";
 import "./mixins/backMixin";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faBook, faCartPlus, faInfo, faPlus, faMinus, faTrash, faUser, faEdit} from '@fortawesome/free-solid-svg-icons';

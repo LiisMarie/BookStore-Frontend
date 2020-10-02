@@ -20,7 +20,7 @@
     <products-display :updateCart="updateCart"
                       id="productsDisplay"
                       ref="productsDisplay"
-                      :deleteBookModal="deleteBookModal"
+                      :deleteProductModal="deleteProductModal"
                       :collections.sync="collections"/>
   </b-container>
 
@@ -45,7 +45,7 @@
             ]
           }
         },
-        props: ['updateCart', 'deleteBookModal'],
+        props: ['updateCart', 'deleteProductModal'],
         watch: {
           async selectedSortingOption() {
             if (this.selectedSortingOption === 'randomly') {

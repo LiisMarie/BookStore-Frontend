@@ -154,7 +154,7 @@ import { validationMixin } from "vuelidate";
 import { required, minLength, maxLength, numeric } from "vuelidate/lib/validators";
 
 export default {
-  name: 'BookForm',
+  name: 'ProductForm',
   data() {
     return {
       genres: [],
