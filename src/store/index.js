@@ -12,9 +12,8 @@ export default new Vuex.Store({
     productToDelete: Number
   },
   getters: {
-    shoppingCart: state => {
-      return state.shoppingCart;
-    }
+    shoppingCart: state => state.shoppingCart,
+    purchaseTotalPrice: state => state.purchaseTotalPrice
   },
   mutations: {
     authenticate(state, { loggedInUserId }) {
@@ -43,11 +42,12 @@ export default new Vuex.Store({
     },
     emptyCart () {
       Api().delete('/shopping/' + this.loggedInUserId)
+          .then(() => this.dispatch('loadShoppingCart'))
           .catch(err => console.log(err));
     },
     deleteItemFromCart() {
-      console.log("removing book with id:  " + this.productToDelete);
       Api().delete('/shopping/user/' + this.loggedInUserId + "/book/" + this.productToDelete)
+          .then(() => this.dispatch('loadShoppingCart'))
           .catch(err => console.log(err));
     }
   },

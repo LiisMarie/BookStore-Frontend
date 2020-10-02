@@ -42,11 +42,14 @@
                 </b-card>
             </div>
         </div>
+
+      <make-order-modal></make-order-modal>
     </b-container>
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapGetters } from 'vuex';
+    import MakeOrderModal from '../components/checkout_components/MakeOrderModal'
 
     export default {
         name: 'Checkout',
@@ -54,25 +57,26 @@
         beforeCreate() {
           this.$store.dispatch('loadShoppingCart');
         },
-        computed:
-          mapState([
+        components: {
+          'make-order-modal': MakeOrderModal
+        },
+
+        computed: {
+          ...mapGetters([
               'shoppingCart',
               'purchaseTotalPrice'
           ]),
+        },
         methods: {
-            emptyUserCart() {
+            async emptyUserCart() {
               this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
-              this.$store.dispatch('emptyCart');
-              this.$store.dispatch('loadShoppingCart');
-              this.$router.go(0);
-              // todo display a modal
+              await this.$store.dispatch('emptyCart');
+              this.$bvModal.show("makeOrderModal");
             },
-            removeFromCart(product) {
-              console.log("product to delete " + product.bookId);
+          async removeFromCart(product) {
               this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
               this.$store.commit('SET_ProductToDelete', {productToDelete: product.bookId});
-              this.$store.dispatch('deleteItemFromCart');
-              this.$router.go(0);
+              await this.$store.dispatch('deleteItemFromCart');
             }
           }
     }
