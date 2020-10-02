@@ -49,7 +49,7 @@
 
 <script>
     import { mapGetters } from 'vuex';
-    import MakeOrderModal from '../components/checkout_components/MakeOrderModal'
+    import MakeOrderModal from '../components/modals/MakeOrderModal'
 
     export default {
         name: 'Checkout',

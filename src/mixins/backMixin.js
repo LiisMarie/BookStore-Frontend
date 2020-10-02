@@ -67,7 +67,8 @@ Vue.mixin({
                 userId: 1,
                 bookId: product.bookId
             }
-            await Api().post('/shopping', params).catch(err => console.log(err));
+            await Api().post('/shopping', params)
+                .catch(err => console.log(err));
             this.productHeading = product.heading;
             this.productCost = product.cost;
             this.productPicture = product.image;
@@ -113,7 +114,6 @@ Vue.mixin({
         },
         // UPDATE
         async updateBook(form, bookId) {
-            console.log("updateForm  : " + form);
             const params = {
                 isbn: form.isbn,
                 heading: form.heading,

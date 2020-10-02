@@ -10,8 +10,8 @@
 
 <script>
   import Navbar from './components/common_components/Navbar'
-  import AddToCartModal from "./components/common_components/AddToCartModal";
-  import DeleteProductModal from "./components/common_components/DeleteProductModal";
+  import AddToCartModal from "./components/modals/AddToCartModal";
+  import DeleteProductModal from "./components/modals/DeleteProductModal";
 
   export default {
     name: 'App',

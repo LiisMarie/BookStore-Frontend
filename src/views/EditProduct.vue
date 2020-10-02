@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ProductForm from "@/components/common_components/ProductForm";
+import ProductForm from "@/components/forms/ProductForm";
 
 export default {
   name: 'EditProduct',

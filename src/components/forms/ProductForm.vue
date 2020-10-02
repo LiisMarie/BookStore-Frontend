@@ -281,7 +281,6 @@ export default {
           return false;
         },
         isNotTooBig(image) {
-          console.log("fileSize:  "+image.size)
           return image.size <= 1024 * 1024;
         }
       }

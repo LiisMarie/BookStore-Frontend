@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import ProductsDisplay from '../components/common_components/ProductsDisplay'
+    import ProductsDisplay from '../components/product_components/ProductsDisplay'
 
     export default {
         name: 'AllProducts',

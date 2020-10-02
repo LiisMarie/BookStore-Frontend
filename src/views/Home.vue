@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import ProductDeck from '../components/home_components/ProductDeck'
+  import ProductDeck from '../components/product_components/ProductDeck'
 
   export default {
     name: "Home",

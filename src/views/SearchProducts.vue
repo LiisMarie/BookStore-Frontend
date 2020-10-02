@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ProductsDisplay from '../components/common_components/ProductsDisplay'
+import ProductsDisplay from '../components/product_components/ProductsDisplay'
 
 export default {
   name: 'SearchProducts',
@@ -46,7 +46,6 @@ export default {
       return this.cleanedSearchInput.trim();
     },
     onSubmit() {
-      console.log("searchForBooks")
       if (this.userInput.length !== 0) this.$router.push('/search-books/' + this.replaceSpaceWithUnderscore(this.userInput));
     }
   },

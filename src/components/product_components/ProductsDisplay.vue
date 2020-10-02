@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ProductCard from '../common_components/ProductCard'
+import ProductCard from '../product_components/ProductCard'
 
 export default {
   name: 'ProductsDisplay',
