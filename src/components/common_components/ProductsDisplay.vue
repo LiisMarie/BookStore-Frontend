@@ -20,6 +20,11 @@ export default {
   props: ['updateCart', 'deleteBookModal', 'collections'],
   components: {
     'product-card': ProductCard
+  },
+  watch: {
+    'collections' () {
+      this.$emit('update:collections', this.collections)
+    }
   }
 }
 </script>
