@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="mt-3">
     <h1>
       {{ this.replaceUnderscoresWithSpaces(this.$route.params.category) }}
     </h1>

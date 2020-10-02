@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="mt-3">
     <div class="row mt-2">
       <div class="col-sm-8">
         <b-card header="My Cart" id="cart">

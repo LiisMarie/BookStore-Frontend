@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="mt-3">
     <product-form operation="add"></product-form>
   </b-container>
 </template>
