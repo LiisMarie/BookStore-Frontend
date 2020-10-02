@@ -39,7 +39,6 @@
 </template>
 
 <script>
-
     export default {
         name: 'Navbar',
         props: ['categories', 'amountOfItemsInCart'],
@@ -51,7 +50,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

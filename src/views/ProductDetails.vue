@@ -63,20 +63,20 @@
 <script>
     export default {
         name: 'ProductDetails',
-        props: ['updateCart', 'deleteBookModal'],
         data () {
             return {
                 product: []
             }
         },
-        async created () {
-            this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
-        },
+      props: ['updateCart', 'deleteBookModal'],
         methods: {
           goToEditBook (isbn) {
             this.$router.push('/edit-book/' + isbn)
           }
-        }
+        },
+      async created () {
+        this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
+      },
     }
 </script>
 

@@ -15,6 +15,11 @@
 
   export default {
     name: 'App',
+    components: {
+      'nav-bar': Navbar,
+      'add-to-cart-modal': AddToCartModal,
+      'delete-product-modal': DeleteProductModal
+    },
     data () {
       return {
         'categoriesMap': [],
@@ -23,11 +28,6 @@
         'productCost': 0,
         'productPicture': ""
       }
-    },
-    components: {
-      'nav-bar': Navbar,
-      'add-to-cart-modal': AddToCartModal,
-      'delete-product-modal': DeleteProductModal
     },
     async created () {
       this.categoriesMap = await this.getCategories();

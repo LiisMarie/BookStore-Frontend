@@ -31,7 +31,9 @@
 
     export default {
         name: 'AllProducts',
-        props: ['updateCart', 'deleteBookModal'],
+        components: {
+          'products-display': ProductsDisplay
+        },
         data () {
           return {
             'collections': [],
@@ -43,12 +45,7 @@
             ]
           }
         },
-        async mounted () {
-          this.collections = await this.getAllBooks();
-        },
-        components: {
-          'products-display': ProductsDisplay
-        },
+        props: ['updateCart', 'deleteBookModal'],
         watch: {
           async selectedSortingOption() {
             if (this.selectedSortingOption === 'randomly') {
@@ -57,10 +54,9 @@
               this.collections = await this.getSortedBooks(this.selectedSortingOption);
             }
           }
+        },
+        async mounted () {
+          this.collections = await this.getAllBooks();
         }
       }
 </script>
-
-<style scoped>
-
-</style>

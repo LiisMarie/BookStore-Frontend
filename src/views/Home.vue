@@ -14,16 +14,16 @@
 
   export default {
     name: "Home",
-    props: ['updateCart', 'deleteBookModal'],
+    components: {
+      'product-deck': ProductDeck
+    },
     data () {
       return {
         'collections': [],
         'categories': []
       }
     },
-    components: {
-      'product-deck': ProductDeck
-    },
+    props: ['updateCart', 'deleteBookModal'],
     async created () {
       this.categories = await this.getCategories();
       this.collections = await this.getAllBooks();

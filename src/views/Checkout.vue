@@ -53,35 +53,30 @@
 
     export default {
         name: 'Checkout',
-        props: ['updateCart'],
-        beforeCreate() {
-          this.$store.dispatch('loadShoppingCart');
-        },
         components: {
           'make-order-modal': MakeOrderModal
         },
-
+        props: ['updateCart'],
+        methods: {
+          async emptyUserCart() {
+            this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
+            await this.$store.dispatch('emptyCart');
+            this.$bvModal.show("makeOrderModal");
+          },
+          async removeFromCart(product) {
+            this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
+            this.$store.commit('SET_ProductToDelete', {productToDelete: product.bookId});
+            await this.$store.dispatch('deleteItemFromCart');
+          }
+        },
         computed: {
           ...mapGetters([
-              'shoppingCart',
-              'purchaseTotalPrice'
+            'shoppingCart',
+            'purchaseTotalPrice'
           ]),
         },
-        methods: {
-            async emptyUserCart() {
-              this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
-              await this.$store.dispatch('emptyCart');
-              this.$bvModal.show("makeOrderModal");
-            },
-          async removeFromCart(product) {
-              this.$store.commit('authenticate', {loggedInUserId: 1}) // TODO part2 real user authentication
-              this.$store.commit('SET_ProductToDelete', {productToDelete: product.bookId});
-              await this.$store.dispatch('deleteItemFromCart');
-            }
-          }
+        beforeCreate() {
+          this.$store.dispatch('loadShoppingCart');
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -17,10 +17,10 @@ import ProductCard from '../common_components/ProductCard'
 
 export default {
   name: 'ProductsDisplay',
-  props: ['updateCart', 'deleteBookModal', 'collections'],
   components: {
     'product-card': ProductCard
   },
+  props: ['updateCart', 'deleteBookModal', 'collections'],
   watch: {
     'collections' () {
       this.$emit('update:collections', this.collections)
@@ -28,7 +28,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

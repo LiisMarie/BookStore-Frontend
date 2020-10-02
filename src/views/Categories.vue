@@ -13,14 +13,19 @@
 
     export default {
         name: 'Categories',
-        props: ['updateCart', 'deleteBookModal'],
-        data () {
-            return {
-                'collections': []
-            }
-        },
         components: {
-            'products-display': ProductsDisplay
+          'products-display': ProductsDisplay
+        },
+        data () {
+          return {
+            'collections': []
+          }
+        },
+        props: ['updateCart', 'deleteBookModal'],
+        methods: {
+          async loadBooks() {
+            this.collections = await this.getBooksByCategory(this.replaceUnderscoresWithSpaces(this.$route.params.category));
+          }
         },
         watch: {
           $route() {
@@ -29,15 +34,6 @@
         },
         async created() {
             await this.loadBooks();
-        },
-        methods: {
-            async loadBooks() {
-              this.collections = await this.getBooksByCategory(this.replaceUnderscoresWithSpaces(this.$route.params.category));
-            }
         }
     }
 </script>
-
-<style scoped>
-
-</style>

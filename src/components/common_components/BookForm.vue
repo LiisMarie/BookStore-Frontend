@@ -155,8 +155,6 @@ import { required, minLength, maxLength, numeric } from "vuelidate/lib/validator
 
 export default {
   name: 'BookForm',
-  mixins: [validationMixin],
-  props: ['operation'], // add - adding a new book, edit - editing an existing book
   data() {
     return {
       genres: [],
@@ -174,6 +172,62 @@ export default {
       }
     };
   },
+  props: ['operation'], // add - adding a new book, edit - editing an existing book
+  methods: {
+    validateState(name) {
+      const { $dirty, $error } = this.$v.form[name];
+      return $dirty ? !$error : null;
+    },
+    resetForm() {
+      this.form = {
+        name: null,
+        food: null
+      };
+
+      this.$nextTick(() => {
+        this.$v.$reset();
+      });
+    },
+    onSubmit() {
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        return;
+      }
+      if (this.operation === 'add') {
+        this.addBook(this.form);
+      } else if (this.operation === 'edit') {
+        this.updateBook(this.form, this.product.bookId);
+      }
+    }
+  },
+  async created() {
+    this.genres.push({ value: null, text: "Choose..." });
+    const categoriesMap = await this.getCategories();
+    for (const category of categoriesMap) {
+      this.genres.push({ value: category.genreId, text: category.genreName });
+    }
+
+    if (this.operation === 'edit') {
+      this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
+
+      this.form.isbn = this.product.isbn;
+      this.form.heading = this.product.heading;
+      this.form.releaseYear = this.product.releaseYear;
+      this.form.publisher = this.product.publisher;
+      this.form.author = this.product.author;
+      this.form.description = this.product.description;
+      this.form.cost = this.product.cost;
+      for (const genre of categoriesMap) {
+        if (genre.genreName === this.product.genre) {
+          this.form.genre = genre.genreId;
+        }
+      }
+
+      this.form.image = this.base64ToFile(this.product.image, "tempName.png", "image/png");
+      this.$v.form.$touch();
+    }
+  },
+  mixins: [validationMixin],
   validations: {
     form: {
       isbn: {
@@ -232,64 +286,6 @@ export default {
         }
       }
     }
-  },
-  async created() {
-    this.genres.push({ value: null, text: "Choose..." });
-    const categoriesMap = await this.getCategories();
-    for (const category of categoriesMap) {
-      this.genres.push({ value: category.genreId, text: category.genreName });
-    }
-
-    if (this.operation === 'edit') {
-      this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
-
-      this.form.isbn = this.product.isbn;
-      this.form.heading = this.product.heading;
-      this.form.releaseYear = this.product.releaseYear;
-      this.form.publisher = this.product.publisher;
-      this.form.author = this.product.author;
-      this.form.description = this.product.description;
-      this.form.cost = this.product.cost;
-      for (const genre of categoriesMap) {
-        if (genre.genreName === this.product.genre) {
-          this.form.genre = genre.genreId;
-        }
-      }
-
-      this.form.image = this.base64ToFile(this.product.image, "tempName.png", "image/png");
-      this.$v.form.$touch();
-    }
-  },
-  methods: {
-    validateState(name) {
-      const { $dirty, $error } = this.$v.form[name];
-      return $dirty ? !$error : null;
-    },
-    resetForm() {
-      this.form = {
-        name: null,
-        food: null
-      };
-
-      this.$nextTick(() => {
-        this.$v.$reset();
-      });
-    },
-    onSubmit() {
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        return;
-      }
-      if (this.operation === 'add') {
-        this.addBook(this.form);
-      } else if (this.operation === 'edit') {
-        this.updateBook(this.form, this.product.bookId);
-      }
-    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

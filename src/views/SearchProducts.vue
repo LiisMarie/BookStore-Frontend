@@ -30,7 +30,9 @@ import ProductsDisplay from '../components/common_components/ProductsDisplay'
 
 export default {
   name: 'SearchProducts',
-  props: ['updateCart', 'deleteBookModal'],
+  components: {
+    'products-display': ProductsDisplay
+  },
   data () {
     return {
       'collections': [],
@@ -38,13 +40,7 @@ export default {
       'userInput': ''
     }
   },
-  async created () {
-    this.cleanedSearchInput = this.replaceUnderscoresWithSpaces(this.$route.params.searchInput);
-    if (this.isUserInputPresent()) this.collections = await this.getBooksBySearch(this.cleanedSearchInput);
-  },
-  components: {
-    'products-display': ProductsDisplay
-  },
+  props: ['updateCart', 'deleteBookModal'],
   methods: {
     isUserInputPresent() {
       return this.cleanedSearchInput.trim();
@@ -53,6 +49,10 @@ export default {
       console.log("searchForBooks")
       if (this.userInput.length !== 0) this.$router.push('/search-books/' + this.replaceSpaceWithUnderscore(this.userInput));
     }
+  },
+  async created () {
+    this.cleanedSearchInput = this.replaceUnderscoresWithSpaces(this.$route.params.searchInput);
+    if (this.isUserInputPresent()) this.collections = await this.getBooksBySearch(this.cleanedSearchInput);
   }
 }
 </script>
