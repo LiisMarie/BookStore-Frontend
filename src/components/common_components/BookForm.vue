@@ -239,9 +239,10 @@ export default {
     for (const category of categoriesMap) {
       this.genres.push({ value: category.genreId, text: category.genreName });
     }
-    this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
 
     if (this.operation === 'edit') {
+      this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
+
       this.form.isbn = this.product.isbn;
       this.form.heading = this.product.heading;
       this.form.releaseYear = this.product.releaseYear;
