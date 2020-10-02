@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Api from '../services/Api'
+import Api from "../services/Api";
 
 Vue.use(Vuex);
 
@@ -19,7 +19,7 @@ export default new Vuex.Store({
     authenticate(state, { loggedInUserId }) {
       this.loggedInUserId = loggedInUserId;
     },
-    SET_ShoppingCart (state, shoppingCart) {
+    SET_ShoppingCart(state, shoppingCart) {
       state.shoppingCart = shoppingCart;
       let totalPrice = 0;
       for (const i in shoppingCart) {
@@ -27,28 +27,35 @@ export default new Vuex.Store({
       }
       state.purchaseTotalPrice = totalPrice.toFixed(2);
     },
-    SET_ProductToDelete (state, { productToDelete }) {
+    SET_ProductToDelete(state, { productToDelete }) {
       this.productToDelete = productToDelete;
     }
   },
   actions: {
-    loadShoppingCart ({ commit }) {
+    loadShoppingCart({ commit }) {
       Api()
-          .get('/user/list/1')
-          .then(response => [...response.data])
-          .then(shoppingCart => {
-            commit('SET_ShoppingCart', shoppingCart)
-          })
+        .get("/user/list/1")
+        .then(response => [...response.data])
+        .then(shoppingCart => {
+          commit("SET_ShoppingCart", shoppingCart);
+        });
     },
-    emptyCart () {
-      Api().delete('/shopping/' + this.loggedInUserId)
-          .then(() => this.dispatch('loadShoppingCart'))
-          .catch(err => console.log(err));
+    emptyCart() {
+      Api()
+        .delete("/shopping/" + this.loggedInUserId)
+        .then(() => this.dispatch("loadShoppingCart"))
+        .catch(err => console.log(err));
     },
     deleteItemFromCart() {
-      Api().delete('/shopping/user/' + this.loggedInUserId + "/book/" + this.productToDelete)
-          .then(() => this.dispatch('loadShoppingCart'))
-          .catch(err => console.log(err));
+      Api()
+        .delete(
+          "/shopping/user/" +
+            this.loggedInUserId +
+            "/book/" +
+            this.productToDelete
+        )
+        .then(() => this.dispatch("loadShoppingCart"))
+        .catch(err => console.log(err));
     }
   },
   modules: {}

@@ -1,18 +1,16 @@
 <template>
-
   <b-container>
     <product-form operation="edit"></product-form>
   </b-container>
-
 </template>
 
 <script>
 import ProductForm from "@/components/forms/ProductForm";
 
 export default {
-  name: 'EditProduct',
+  name: "EditProduct",
   components: {
-    'product-form': ProductForm
+    "product-form": ProductForm
   }
-}
+};
 </script>

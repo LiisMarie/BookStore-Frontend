@@ -23,8 +23,8 @@ const routes = [
     component: AllProducts
   },
   {
-    path: '/categories/:category',
-    name: 'Categories',
+    path: "/categories/:category",
+    name: "Categories",
     component: Categories,
     props: true
   },
