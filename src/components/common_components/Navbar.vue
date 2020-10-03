@@ -6,7 +6,7 @@
         eBooks
       </b-navbar-brand>
 
-      <div class="d-flex order-lg-1 ml-auto mr-1 float-right pr-2">
+      <div class="d-flex order-lg-1 order-md-1 ml-auto mr-1 float-right pr-2">
         <a
           href="#"
           class="navbar-text mr-3"
