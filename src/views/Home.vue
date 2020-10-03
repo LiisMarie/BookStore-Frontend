@@ -1,23 +1,29 @@
 <template>
-  <div class="container">
-    <div v-for="category in categories" :key="category.genreName">
-      <product-deck
-        :products="getDisplayProducts(category.genreName)"
-        :productCategory="category.genreName"
-        :updateCart="updateCart"
-        :deleteProductModal="deleteProductModal"
-      />
-    </div>
+  <div>
+    <image-carousel />
+
+    <b-container class="mt-3">
+      <div v-for="category in categories" :key="category.genreName">
+        <product-deck
+          :products="getDisplayProducts(category.genreName)"
+          :productCategory="category.genreName"
+          :updateCart="updateCart"
+          :deleteProductModal="deleteProductModal"
+        />
+      </div>
+    </b-container>
   </div>
 </template>
 
 <script>
 import ProductDeck from "../components/product_components/ProductDeck";
+import CarouselForHome from "../components/common_components/CarouselForHome";
 
 export default {
   name: "Home",
   components: {
-    "product-deck": ProductDeck
+    "product-deck": ProductDeck,
+    "image-carousel": CarouselForHome
   },
   data() {
     return {
