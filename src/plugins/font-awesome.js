@@ -3,7 +3,6 @@ import Vue from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faShoppingCart,
-  faBook,
   faCartPlus,
   faInfo,
   faPlus,
@@ -16,7 +15,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(
   faShoppingCart,
-  faBook,
   faCartPlus,
   faInfo,
   faPlus,
