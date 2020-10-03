@@ -1,12 +1,36 @@
 <template>
   <b-navbar sticky toggleable="md" type="dark" variant="info">
     <div class="container">
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
       <b-navbar-brand href="#" @click.prevent="route_to('/')">
         <b-img src="../../assets/logo.png" fluid style="max-height: 30px" />
         eBooks
       </b-navbar-brand>
+
+      <div class="d-flex order-lg-1 ml-auto mr-1 float-right pr-2">
+        <a
+          href="#"
+          class="navbar-text mr-3"
+          @click.prevent="route_to('/checkout')"
+        >
+          <font-awesome-icon :icon="['fas', 'shopping-cart']"
+        /></a>
+
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item mx-2 mx-lg-0">
+            <div class="dropdown">
+              <b-nav-item href="#"
+                ><font-awesome-icon :icon="['fas', 'user']"
+              /></b-nav-item>
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item">Account</a>
+                <a href="#" class="dropdown-item">Log out</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
@@ -33,12 +57,6 @@
           >
         </b-navbar-nav>
       </b-collapse>
-
-      <b-navbar-nav is-nav class="ml-auto mr-1 float-right">
-        <a class="nav-link ml-auto mr-1" @click.prevent="route_to('/checkout')">
-          <font-awesome-icon :icon="['fas', 'shopping-cart']" />
-        </a>
-      </b-navbar-nav>
     </div>
   </b-navbar>
 </template>
@@ -55,3 +73,36 @@ export default {
   }
 };
 </script>
+
+<style>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+  left: auto;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
