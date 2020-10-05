@@ -12,10 +12,17 @@
             size="sm"
             v-model="selectedSortingOption"
             :options="sortingOptions"
+            style="max-width: 150px"
           />
         </div>
       </b-col>
     </b-row>
+
+    <b-row
+      ><search-books-form
+        :updateCart="updateCart"
+        :deleteProductModal="deleteProductModal"
+    /></b-row>
 
     <products-display
       :updateCart="updateCart"
@@ -29,11 +36,13 @@
 
 <script>
 import ProductsDisplay from "../components/product_components/ProductsDisplay";
+import SearchBooksForm from "../components/forms/SearchBooksForm";
 
 export default {
   name: "AllProducts",
   components: {
-    "products-display": ProductsDisplay
+    "products-display": ProductsDisplay,
+    "search-books-form": SearchBooksForm
   },
   data() {
     return {

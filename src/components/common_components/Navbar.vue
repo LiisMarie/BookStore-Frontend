@@ -10,6 +10,14 @@
         <a
           href="#"
           class="navbar-text mr-3"
+          @click.prevent="route_to('/search-books/_')"
+        >
+          <font-awesome-icon :icon="['fas', 'search']"
+        /></a>
+
+        <a
+          href="#"
+          class="navbar-text mr-3"
           @click.prevent="route_to('/checkout')"
         >
           <font-awesome-icon :icon="['fas', 'shopping-cart']"
@@ -50,10 +58,6 @@
 
           <b-nav-item href="#" @click.prevent="route_to('/add-book')"
             >Add book</b-nav-item
-          >
-
-          <b-nav-item href="#" @click.prevent="route_to('/search-books/_')"
-            >Search</b-nav-item
           >
         </b-navbar-nav>
       </b-collapse>
