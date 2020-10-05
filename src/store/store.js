@@ -34,7 +34,7 @@ export default new Vuex.Store({
   actions: {
     loadShoppingCart({ commit }) {
       Api()
-        .get("/user/list/1")
+        .get("/user/1/shopping")
         .then(response => [...response.data])
         .then(shoppingCart => {
           commit("SET_ShoppingCart", shoppingCart);
