@@ -1,23 +1,26 @@
 <template>
   <div id="app">
-    <nav-bar :categories="categoriesMap"></nav-bar>
-    <router-view
-      :updateCart="addToCart"
-      :deleteProductModal="displayDeleteBookModal"
-    />
+    <div id="page-container">
+      <div id="content-wrap">
+        <nav-bar :categories="categoriesMap"></nav-bar>
+        <router-view
+          :updateCart="addToCart"
+          :deleteProductModal="displayDeleteBookModal"
+        />
 
-    <add-to-cart-modal
-      :title="productHeading"
-      :cost="productCost"
-      :picture="productPicture"
-    />
-    <delete-product-modal
-      :bookId="productId"
-      :title="productHeading"
-      :picture="productPicture"
-    />
-
-    <custom-footer />
+        <add-to-cart-modal
+          :title="productHeading"
+          :cost="productCost"
+          :picture="productPicture"
+        />
+        <delete-product-modal
+          :bookId="productId"
+          :title="productHeading"
+          :picture="productPicture"
+        />
+      </div>
+      <custom-footer></custom-footer>
+    </div>
   </div>
 </template>
 
@@ -55,11 +58,16 @@ export default {
   width: 100%;
   text-align: center;
 }
-html {
+
+#page-container {
   position: relative;
-  min-height: 100%;
-  padding-bottom: 10px;
+  min-height: 100vh;
 }
+
+#content-wrap {
+  padding-bottom: 30px;
+}
+
 #app {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   color: #2c3e50;
