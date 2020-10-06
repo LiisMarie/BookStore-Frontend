@@ -1,5 +1,7 @@
 # BookStore - frontend
 
+Team 11 - Rait Kulbok, Liis-Marie Kütt, Broiss Zahharov
+
 ## Get backend up and running
 [Clone backend from here](https://gitlab.cs.ttu.ee/rakulb/iti0203-2020-backend-team11-bookstore)
 
