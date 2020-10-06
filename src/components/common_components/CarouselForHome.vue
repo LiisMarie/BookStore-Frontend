@@ -3,7 +3,7 @@
     <b-carousel
       id="carousel-1"
       v-model="slide"
-      :interval="4000"
+      :interval="2000"
       controls
       indicators
       img-width="1024"
@@ -12,7 +12,6 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <!-- Slides with custom text -->
       <b-carousel-slide
         caption="eBooks are environmentally friendly!"
         img-src="../../assets/carousel_images/reader-timber.jpg"

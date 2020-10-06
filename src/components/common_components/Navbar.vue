@@ -72,14 +72,14 @@ export default {
   methods: {
     route_to(path) {
       const replacedPath = this.replaceSpaceWithUnderscore(path);
-      if (this.$route.path !== replacedPath) this.$router.push(replacedPath);
+      if (this.$route.path !== replacedPath) this.setRouterTo(replacedPath);
     }
   }
 };
 </script>
 
 <style lang="scss">
-.dropdown {
+#dropdown {
   position: relative;
   display: inline-block;
 }
@@ -93,17 +93,17 @@ export default {
   z-index: 1;
   right: 0;
   left: auto;
-}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+  a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
+    :hover {
+      background-color: #f1f1f1;
+    }
+  }
 }
 
 .dropdown:hover .dropdown-content {

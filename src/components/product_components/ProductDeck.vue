@@ -37,7 +37,7 @@ export default {
   props: ["products", "productCategory", "updateCart", "deleteProductModal"],
   methods: {
     seeAll(category) {
-      this.$router.push(
+      this.setRouterTo(
         "/categories/" + this.replaceSpaceWithUnderscore(category)
       );
     }

@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     goToCart() {
-      this.$router.push("/checkout");
+      this.setRouterTo("/checkout");
     }
   }
 };

@@ -93,7 +93,7 @@ export default {
   props: ["updateCart", "deleteProductModal"],
   methods: {
     goToEditBook(isbn) {
-      this.$router.push("/edit-book/" + isbn);
+      this.setRouterTo("/edit-book/" + isbn);
     }
   },
   async created() {

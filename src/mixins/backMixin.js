@@ -110,7 +110,7 @@ Vue.mixin({
         .post("/images/" + bookId, formData)
         .then(() => {
           if (editingBook) {
-            this.$router.push("/products/" + bookIsbn);
+            this.setRouterTo("/products/" + bookIsbn);
           } else {
             alert("Book added successfully!");
             this.$router.go(0);
@@ -188,7 +188,10 @@ Vue.mixin({
       return new File(byteArrays, tempfilename, { type: contentType });
     },
     goToDetails(isbn) {
-      this.$router.push("/products/" + isbn);
+      this.setRouterTo("/products/" + isbn);
+    },
+    setRouterTo(path) {
+      this.$router.push(path);
     }
   }
 });
