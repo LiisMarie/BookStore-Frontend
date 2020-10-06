@@ -16,6 +16,8 @@
       :title="productHeading"
       :picture="productPicture"
     />
+
+    <custom-footer />
   </div>
 </template>
 
@@ -23,13 +25,15 @@
 import Navbar from "./components/common_components/Navbar";
 import AddToCartModal from "./components/modals/AddToCartModal";
 import DeleteProductModal from "./components/modals/DeleteProductModal";
+import Footer from "./components/common_components/Footer";
 
 export default {
   name: "App",
   components: {
     "nav-bar": Navbar,
     "add-to-cart-modal": AddToCartModal,
-    "delete-product-modal": DeleteProductModal
+    "delete-product-modal": DeleteProductModal,
+    "custom-footer": Footer
   },
   data() {
     return {
@@ -50,5 +54,10 @@ export default {
 .modal-title {
   width: 100%;
   text-align: center;
+}
+html {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 10px;
 }
 </style>
