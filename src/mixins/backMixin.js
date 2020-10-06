@@ -4,6 +4,7 @@ import Api from "../services/Api";
 Vue.mixin({
   methods: {
     // READ
+
     async getCategories() {
       let genresMap = [];
       await Api()
@@ -17,6 +18,7 @@ Vue.mixin({
         .catch(err => console.log(err));
       return genresMap;
     },
+
     async getAllBooks() {
       let books = [];
       await Api()
@@ -27,6 +29,7 @@ Vue.mixin({
         .catch(err => console.log(err));
       return books;
     },
+
     async getBooksByCategory(category) {
       let books = [];
       await Api()
@@ -37,6 +40,7 @@ Vue.mixin({
         .catch(err => console.log(err));
       return books;
     },
+
     async getBookByIsbn(isbn) {
       let book = [];
       await Api()
@@ -47,6 +51,7 @@ Vue.mixin({
         .catch(err => console.log(err));
       return book;
     },
+
     async getBooksBySearch(searchInput) {
       let book = [];
       await Api()
@@ -57,6 +62,7 @@ Vue.mixin({
         .catch(err => console.log(err));
       return book;
     },
+
     async getSortedBooks(sortingAttribute) {
       let book = [];
       await Api()
@@ -67,7 +73,9 @@ Vue.mixin({
         .catch(err => console.log(err));
       return book;
     },
+
     // CREATE
+
     async addToCart(product) {
       const params = {
         userId: 1,
@@ -81,6 +89,7 @@ Vue.mixin({
       this.productPicture = product.image;
       this.$bvModal.show("addToCartModal");
     },
+
     async addBook(form) {
       const params = {
         isbn: form.isbn,
@@ -102,6 +111,7 @@ Vue.mixin({
           alert("An error occurred while posting book!");
         });
     },
+
     async addImage(bookId, bookIsbn, image, editingBook) {
       const imgBlob = new Blob([image], { type: "image/png" });
       const formData = new FormData();
@@ -121,7 +131,9 @@ Vue.mixin({
           alert("An error occurred while posting image!");
         });
     },
+
     // UPDATE
+
     async updateBook(form, bookId) {
       const params = {
         isbn: form.isbn,
@@ -143,55 +155,14 @@ Vue.mixin({
           alert("An error occurred while updating book!");
         });
     },
+
     // DELETE
-    displayDeleteBookModal(product) {
-      this.productHeading = product.heading;
-      this.productPicture = product.image;
-      this.productId = product.bookId;
-      this.$bvModal.show("deleteProductModal");
-    },
+
     async deleteBookById(bookId) {
       await Api()
         .delete("/books/" + bookId)
         .catch(err => console.log(err));
       this.$router.go(0);
-    },
-    // HELPERS
-    replaceSpaceWithUnderscore(strToReplace) {
-      return strToReplace.replaceAll(" ", "_");
-    },
-    replaceUnderscoresWithSpaces(strToReplace) {
-      return strToReplace.replaceAll("_", " ");
-    },
-    placeBookPicture(imageId, pictureByteArray) {
-      document.getElementById(imageId).src =
-        "data:image/png;base64," + pictureByteArray;
-    },
-    base64ToFile(base64Data, tempfilename, contentType) {
-      contentType = contentType || "";
-      const sliceSize = 1024;
-      const byteCharacters = atob(base64Data);
-      const bytesLength = byteCharacters.length;
-      const slicesCount = Math.ceil(bytesLength / sliceSize);
-      const byteArrays = new Array(slicesCount);
-
-      for (let sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
-        const begin = sliceIndex * sliceSize;
-        const end = Math.min(begin + sliceSize, bytesLength);
-
-        const bytes = new Array(end - begin);
-        for (let offset = begin, i = 0; offset < end; ++i, ++offset) {
-          bytes[i] = byteCharacters[offset].charCodeAt(0);
-        }
-        byteArrays[sliceIndex] = new Uint8Array(bytes);
-      }
-      return new File(byteArrays, tempfilename, { type: contentType });
-    },
-    goToDetails(isbn) {
-      this.setRouterTo("/products/" + isbn);
-    },
-    setRouterTo(path) {
-      this.$router.push(path);
     }
   }
 });
