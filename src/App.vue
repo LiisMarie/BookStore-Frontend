@@ -60,4 +60,8 @@ html {
   min-height: 100%;
   padding-bottom: 10px;
 }
+#app {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: #2c3e50;
+}
 </style>

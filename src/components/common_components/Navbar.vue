@@ -78,7 +78,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .dropdown {
   position: relative;
   display: inline-block;
