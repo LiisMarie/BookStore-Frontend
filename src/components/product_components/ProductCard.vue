@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <b-card style="max-width: 20rem;" class="mb-2 text-center">
+  <b-card-group>
+    <b-card class="mb-2 text-center">
       <b-img
         @click="goToDetails(product.isbn)"
         fluid
@@ -52,7 +52,7 @@
         <font-awesome-icon :icon="['fas', 'trash']" />
       </b-button>
     </b-card>
-  </div>
+  </b-card-group>
 </template>
 
 <script>
