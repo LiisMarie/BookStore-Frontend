@@ -1,14 +1,24 @@
 <template>
   <div class="container">
     <b-card style="max-width: 20rem;" class="mb-2 text-center">
-      <b-img fluid :id="product.isbn" src="" class="p-2"></b-img>
+      <b-img
+        @click="goToDetails(product.isbn)"
+        fluid
+        :id="product.isbn"
+        src=""
+        class="p-2"
+      ></b-img>
 
-      <h4>
+      <h4 @click="goToDetails(product.isbn)">
         {{ product.heading }}
       </h4>
-      <p class="card-text">Author: {{ product.author }}</p>
+      <p class="card-text" @click="goToDetails(product.isbn)">
+        Author: {{ product.author }}
+      </p>
 
-      <p>Price: {{ product.cost.toFixed(2) }}€</p>
+      <p @click="goToDetails(product.isbn)">
+        Price: {{ product.cost.toFixed(2) }}€
+      </p>
 
       <b-button
         size="sm"
@@ -50,9 +60,6 @@ export default {
   name: "ProductCard",
   props: ["product", "updateCart", "deleteProductModal"],
   methods: {
-    goToDetails(isbn) {
-      this.$router.push("/products/" + isbn);
-    },
     goToEditBook(isbn) {
       this.$router.push("/edit-book/" + isbn);
     }

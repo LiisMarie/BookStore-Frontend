@@ -186,6 +186,9 @@ Vue.mixin({
         byteArrays[sliceIndex] = new Uint8Array(bytes);
       }
       return new File(byteArrays, tempfilename, { type: contentType });
+    },
+    goToDetails(isbn) {
+      this.$router.push("/products/" + isbn);
     }
   }
 });

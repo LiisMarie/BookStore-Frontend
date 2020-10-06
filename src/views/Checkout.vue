@@ -19,6 +19,7 @@
                 :src="'data:image/png;base64,' + product.image"
                 :id="product.isbn"
                 class="p-2"
+                @click="goToDetails(product.isbn)"
               ></b-img>
             </div>
 
@@ -35,11 +36,11 @@
 
                 <h5>{{ product.heading }}</h5>
 
-                <div class="row">
+                <div class="row" @click="goToDetails(product.isbn)">
                   <div class="col-4">Author:</div>
                   <div class="col-8">{{ product.author }}</div>
                 </div>
-                <div class="row">
+                <div class="row" @click="goToDetails(product.isbn)">
                   <div class="col-4">Price:</div>
                   <div class="col-8">{{ product.cost.toFixed(2) }}€</div>
                 </div>
