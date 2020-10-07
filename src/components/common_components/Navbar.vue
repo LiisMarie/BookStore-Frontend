@@ -2,7 +2,7 @@
   <b-navbar sticky toggleable="md" type="dark" variant="info">
     <div class="container">
       <b-navbar-brand href="#" @click.prevent="route_to('/')">
-        <b-img src="../../assets/logo.png" fluid style="max-height: 30px" />
+        <b-img src="../../assets/logo.png" fluid id="navbarLogo" />
         eBooks
       </b-navbar-brand>
 
@@ -79,6 +79,10 @@ export default {
 </script>
 
 <style lang="scss">
+#navbarLogo {
+  max-height: 30px;
+}
+
 #dropdown {
   position: relative;
   display: inline-block;

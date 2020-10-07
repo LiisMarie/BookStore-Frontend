@@ -26,15 +26,17 @@
             <div class="col-sm-9">
               <div>
                 <b-button
+                  id="removeFromCartButton"
                   size="sm"
                   @click.prevent="removeFromCart(product)"
                   variant="danger"
-                  style="float: right"
                 >
                   <font-awesome-icon :icon="['fas', 'trash']" />
                 </b-button>
 
-                <h5>{{ product.heading }}</h5>
+                <h5 @click="goToDetails(product.isbn)">
+                  {{ product.heading }}
+                </h5>
 
                 <div class="row" @click="goToDetails(product.isbn)">
                   <div class="col-4">Author:</div>
@@ -103,3 +105,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#removeFromCartButton {
+  float: right;
+}
+</style>

@@ -1,14 +1,13 @@
 <template>
   <div>
     <b-carousel
-      id="carousel-1"
+      id="homeCarousel"
       v-model="slide"
       :interval="2000"
       controls
       indicators
       img-width="1024"
       img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
@@ -55,3 +54,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#homeCarousel {
+  text-shadow: 1px 1px 2px #333;
+}
+</style>

@@ -28,26 +28,26 @@
         <font-awesome-icon :icon="['fas', 'cart-plus']" />
       </b-button>
       <b-button
+        class="action-btn"
         size="sm"
         variant="info"
         @click="goToDetails(product.isbn)"
-        style="margin-left: 10px"
       >
         <font-awesome-icon :icon="['fas', 'info']" />
       </b-button>
       <b-button
+        class="action-btn"
         size="sm"
         variant="secondary"
         @click="goToEditBook(product.isbn)"
-        style="margin-left: 10px"
       >
         <font-awesome-icon :icon="['fas', 'edit']" />
       </b-button>
       <b-button
+        class="action-btn"
         size="sm"
         variant="danger"
         @click="deleteProductModal(product)"
-        style="margin-left: 10px"
       >
         <font-awesome-icon :icon="['fas', 'trash']" />
       </b-button>
@@ -69,3 +69,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.action-btn {
+  margin-left: 10px;
+}
+</style>

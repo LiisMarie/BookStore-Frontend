@@ -11,7 +11,7 @@
         <p>Your order has been successfully processed.</p>
         <p>An email will be sent to You shortly.</p>
         <b-img
-          style="max-height:300px"
+          id="makeOrderPicture"
           fluid
           center
           src="../../assets/orderConfirmationPhoto.jpg"
@@ -24,3 +24,9 @@
 <script>
 export default {};
 </script>
+
+<style lang="scss">
+#makeOrderPicture {
+  max-height: 300px;
+}
+</style>

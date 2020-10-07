@@ -9,10 +9,10 @@
         <div class="form-inline">
           <p class="mr-2">Sort by</p>
           <b-form-select
+            id="sortSelect"
             size="sm"
             v-model="selectedSortingOption"
             :options="sortingOptions"
-            style="max-width: 150px"
           />
         </div>
       </b-col>
@@ -72,3 +72,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#sortSelect {
+  max-width: 160px;
+}
+</style>

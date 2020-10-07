@@ -62,17 +62,17 @@
           Add to Cart
         </b-button>
         <b-button
+          class="action-btn"
           variant="secondary"
           @click="goToEditBook(product.isbn)"
-          style="margin-left: 10px"
         >
           <font-awesome-icon :icon="['fas', 'edit']" />
           Edit
         </b-button>
         <b-button
+          class="action-btn"
           variant="danger"
           @click="deleteProductModal(product)"
-          style="margin-left: 10px"
         >
           <font-awesome-icon :icon="['fas', 'trash']" />
           Delete
@@ -102,4 +102,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.action-btn {
+  margin-left: 10px;
+}
+</style>
