@@ -2,11 +2,19 @@
   <b-navbar sticky toggleable="md" type="dark" variant="info">
     <div class="container">
       <b-navbar-brand href="#" @click.prevent="route_to('/')">
-        <b-img src="../../assets/logo.png" fluid style="max-height: 30px" />
+        <b-img src="../../assets/logo.png" fluid id="navbarLogo" />
         eBooks
       </b-navbar-brand>
 
       <div class="d-flex order-lg-1 order-md-1 ml-auto mr-1 float-right pr-2">
+        <a
+          href="#"
+          class="navbar-text mr-3"
+          @click.prevent="route_to('/search-books/_')"
+        >
+          <font-awesome-icon :icon="['fas', 'search']"
+        /></a>
+
         <a
           href="#"
           class="navbar-text mr-3"
@@ -51,10 +59,6 @@
           <b-nav-item href="#" @click.prevent="route_to('/add-book')"
             >Add book</b-nav-item
           >
-
-          <b-nav-item href="#" @click.prevent="route_to('/search-books/_')"
-            >Search</b-nav-item
-          >
         </b-navbar-nav>
       </b-collapse>
     </div>
@@ -68,14 +72,18 @@ export default {
   methods: {
     route_to(path) {
       const replacedPath = this.replaceSpaceWithUnderscore(path);
-      if (this.$route.path !== replacedPath) this.$router.push(replacedPath);
+      if (this.$route.path !== replacedPath) this.setRouterTo(replacedPath);
     }
   }
 };
 </script>
 
-<style>
-.dropdown {
+<style lang="scss">
+#navbarLogo {
+  max-height: 30px;
+}
+
+#dropdown {
   position: relative;
   display: inline-block;
 }
@@ -89,17 +97,17 @@ export default {
   z-index: 1;
   right: 0;
   left: auto;
-}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+  a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
+    :hover {
+      background-color: #f1f1f1;
+    }
+  }
 }
 
 .dropdown:hover .dropdown-content {

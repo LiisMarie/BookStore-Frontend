@@ -117,7 +117,8 @@
           ></b-form-input>
 
           <b-form-invalid-feedback id="input-releaseYear-live-feedback"
-            >This is a required field and must be exactly 4 digits.
+            >This is a required field. The year zero does not exist and going to
+            the future is not possible (at least not yet).
           </b-form-invalid-feedback>
         </b-form-group>
 
@@ -201,7 +202,8 @@ import {
   required,
   minLength,
   maxLength,
-  numeric
+  numeric,
+  integer
 } from "vuelidate/lib/validators";
 
 export default {
@@ -297,9 +299,13 @@ export default {
       },
       releaseYear: {
         required,
-        minLength: minLength(4),
-        maxLength: maxLength(4),
-        numeric: numeric
+        integer,
+        canNotBeZero(releaseYear) {
+          return releaseYear != 0;
+        },
+        doesNotGoToFuture(releaseYear) {
+          return releaseYear <= new Date().getFullYear();
+        }
       },
       publisher: {
         required,

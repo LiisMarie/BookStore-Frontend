@@ -19,27 +19,30 @@
                 :src="'data:image/png;base64,' + product.image"
                 :id="product.isbn"
                 class="p-2"
+                @click="goToDetails(product.isbn)"
               ></b-img>
             </div>
 
             <div class="col-sm-9">
               <div>
                 <b-button
+                  id="removeFromCartButton"
                   size="sm"
                   @click.prevent="removeFromCart(product)"
                   variant="danger"
-                  style="float: right"
                 >
                   <font-awesome-icon :icon="['fas', 'trash']" />
                 </b-button>
 
-                <h5>{{ product.heading }}</h5>
+                <h5 @click="goToDetails(product.isbn)">
+                  {{ product.heading }}
+                </h5>
 
-                <div class="row">
+                <div class="row" @click="goToDetails(product.isbn)">
                   <div class="col-4">Author:</div>
                   <div class="col-8">{{ product.author }}</div>
                 </div>
-                <div class="row">
+                <div class="row" @click="goToDetails(product.isbn)">
                   <div class="col-4">Price:</div>
                   <div class="col-8">{{ product.cost.toFixed(2) }}€</div>
                 </div>
@@ -96,8 +99,15 @@ export default {
   computed: {
     ...mapGetters(["shoppingCart", "purchaseTotalPrice"])
   },
-  beforeCreate() {
+  created() {
+    this.$store.commit("authenticate", { loggedInUserId: 1 }); // TODO part2 real user authentication
     this.$store.dispatch("loadShoppingCart");
   }
 };
 </script>
+
+<style lang="scss">
+#removeFromCartButton {
+  float: right;
+}
+</style>

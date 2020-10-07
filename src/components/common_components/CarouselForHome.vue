@@ -1,18 +1,16 @@
 <template>
   <div>
     <b-carousel
-      id="carousel-1"
+      id="homeCarousel"
       v-model="slide"
-      :interval="4000"
+      :interval="2000"
       controls
       indicators
       img-width="1024"
       img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <!-- Slides with custom text -->
       <b-carousel-slide
         caption="eBooks are environmentally friendly!"
         img-src="../../assets/carousel_images/reader-timber.jpg"
@@ -56,3 +54,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#homeCarousel {
+  text-shadow: 1px 1px 2px #333;
+}
+</style>

@@ -4,6 +4,12 @@
       {{ this.replaceUnderscoresWithSpaces(this.$route.params.category) }}
     </h1>
 
+    <b-row
+      ><search-books-form
+        :updateCart="updateCart"
+        :deleteProductModal="deleteProductModal"
+    /></b-row>
+
     <products-display
       :updateCart="updateCart"
       :deleteProductModal="deleteProductModal"
@@ -14,11 +20,13 @@
 
 <script>
 import ProductsDisplay from "../components/product_components/ProductsDisplay";
+import SearchBooksForm from "../components/forms/SearchBooksForm";
 
 export default {
   name: "Categories",
   components: {
-    "products-display": ProductsDisplay
+    "products-display": ProductsDisplay,
+    "search-books-form": SearchBooksForm
   },
   data() {
     return {

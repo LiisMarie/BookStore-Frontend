@@ -9,6 +9,7 @@
         <div class="form-inline">
           <p class="mr-2">Sort by</p>
           <b-form-select
+            id="sortSelect"
             size="sm"
             v-model="selectedSortingOption"
             :options="sortingOptions"
@@ -16,6 +17,12 @@
         </div>
       </b-col>
     </b-row>
+
+    <b-row
+      ><search-books-form
+        :updateCart="updateCart"
+        :deleteProductModal="deleteProductModal"
+    /></b-row>
 
     <products-display
       :updateCart="updateCart"
@@ -29,11 +36,13 @@
 
 <script>
 import ProductsDisplay from "../components/product_components/ProductsDisplay";
+import SearchBooksForm from "../components/forms/SearchBooksForm";
 
 export default {
   name: "AllProducts",
   components: {
-    "products-display": ProductsDisplay
+    "products-display": ProductsDisplay,
+    "search-books-form": SearchBooksForm
   },
   data() {
     return {
@@ -63,3 +72,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#sortSelect {
+  max-width: 160px;
+}
+</style>

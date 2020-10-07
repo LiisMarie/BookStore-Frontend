@@ -1,4 +1,8 @@
 import axios from "axios";
+import "../mixins/categoriesMixin";
+import "../mixins/helpersMixin";
+import "../mixins/booksMixin";
+import "../mixins/shoppingMixin";
 
 export default () => {
   return axios.create({

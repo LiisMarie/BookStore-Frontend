@@ -1,14 +1,24 @@
 <template>
-  <div class="container">
-    <b-card style="max-width: 20rem;" class="mb-2 text-center">
-      <b-img fluid :id="product.isbn" src="" class="p-2"></b-img>
+  <b-card-group>
+    <b-card class="mb-2 text-center">
+      <b-img
+        @click="goToDetails(product.isbn)"
+        fluid
+        :id="product.isbn"
+        src=""
+        class="p-2"
+      ></b-img>
 
-      <h4>
+      <h4 @click="goToDetails(product.isbn)">
         {{ product.heading }}
       </h4>
-      <p class="card-text">Author: {{ product.author }}</p>
+      <p class="card-text" @click="goToDetails(product.isbn)">
+        Author: {{ product.author }}
+      </p>
 
-      <p>Price: {{ product.cost.toFixed(2) }}€</p>
+      <p @click="goToDetails(product.isbn)">
+        Price: {{ product.cost.toFixed(2) }}€
+      </p>
 
       <b-button
         size="sm"
@@ -18,31 +28,31 @@
         <font-awesome-icon :icon="['fas', 'cart-plus']" />
       </b-button>
       <b-button
+        class="action-btn"
         size="sm"
         variant="info"
         @click="goToDetails(product.isbn)"
-        style="margin-left: 10px"
       >
         <font-awesome-icon :icon="['fas', 'info']" />
       </b-button>
       <b-button
+        class="action-btn"
         size="sm"
         variant="secondary"
         @click="goToEditBook(product.isbn)"
-        style="margin-left: 10px"
       >
         <font-awesome-icon :icon="['fas', 'edit']" />
       </b-button>
       <b-button
+        class="action-btn"
         size="sm"
         variant="danger"
         @click="deleteProductModal(product)"
-        style="margin-left: 10px"
       >
         <font-awesome-icon :icon="['fas', 'trash']" />
       </b-button>
     </b-card>
-  </div>
+  </b-card-group>
 </template>
 
 <script>
@@ -50,11 +60,8 @@ export default {
   name: "ProductCard",
   props: ["product", "updateCart", "deleteProductModal"],
   methods: {
-    goToDetails(isbn) {
-      this.$router.push("/products/" + isbn);
-    },
     goToEditBook(isbn) {
-      this.$router.push("/edit-book/" + isbn);
+      this.setRouterTo("/edit-book/" + isbn);
     }
   },
   mounted() {
@@ -62,3 +69,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.action-btn {
+  margin-left: 10px;
+}
+</style>
