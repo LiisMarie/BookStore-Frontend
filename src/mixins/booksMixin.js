@@ -3,21 +3,51 @@ import Api from "../services/Api";
 
 Vue.mixin({
   methods: {
-    // READ
+    // CREATE
 
-    async getCategories() {
-      let genresMap = [];
+    async addBook(form) {
+      const params = {
+        isbn: form.isbn,
+        heading: form.heading,
+        releaseYear: form.releaseYear,
+        publisher: form.publisher,
+        author: form.author,
+        genre: form.genre,
+        description: form.description,
+        cost: form.cost
+      };
       await Api()
-        .get("/genres")
+        .post("/books", params)
         .then(response => {
-          let genresResponse = [...response.data];
-          for (let i in genresResponse) {
-            genresMap.push(genresResponse[i]);
+          this.addImage(response.data.bookId, form.isbn, form.image, false);
+        })
+        .catch(err => {
+          console.log(err);
+          alert("An error occurred while posting book!");
+        });
+    },
+
+    async addImage(bookId, bookIsbn, image, editingBook) {
+      const imgBlob = new Blob([image], { type: "image/png" });
+      const formData = new FormData();
+      formData.append("imageFile", imgBlob, bookIsbn);
+      await Api()
+        .post("/images/" + bookId, formData)
+        .then(() => {
+          if (editingBook) {
+            this.setRouterTo("/products/" + bookIsbn);
+          } else {
+            alert("Book added successfully!");
+            this.$router.go(0);
           }
         })
-        .catch(err => console.log(err));
-      return genresMap;
+        .catch(err => {
+          console.log(err);
+          alert("An error occurred while posting image!");
+        });
     },
+
+    // READ
 
     async getAllBooks() {
       let books = [];
@@ -72,64 +102,6 @@ Vue.mixin({
         })
         .catch(err => console.log(err));
       return book;
-    },
-
-    // CREATE
-
-    async addToCart(product) {
-      const params = {
-        userId: 1,
-        bookId: product.bookId
-      };
-      await Api()
-        .post("/shopping", params)
-        .catch(err => console.log(err));
-      this.productHeading = product.heading;
-      this.productCost = product.cost;
-      this.productPicture = product.image;
-      this.$bvModal.show("addToCartModal");
-    },
-
-    async addBook(form) {
-      const params = {
-        isbn: form.isbn,
-        heading: form.heading,
-        releaseYear: form.releaseYear,
-        publisher: form.publisher,
-        author: form.author,
-        genre: form.genre,
-        description: form.description,
-        cost: form.cost
-      };
-      await Api()
-        .post("/books", params)
-        .then(response => {
-          this.addImage(response.data.bookId, form.isbn, form.image, false);
-        })
-        .catch(err => {
-          console.log(err);
-          alert("An error occurred while posting book!");
-        });
-    },
-
-    async addImage(bookId, bookIsbn, image, editingBook) {
-      const imgBlob = new Blob([image], { type: "image/png" });
-      const formData = new FormData();
-      formData.append("imageFile", imgBlob, bookIsbn);
-      await Api()
-        .post("/images/" + bookId, formData)
-        .then(() => {
-          if (editingBook) {
-            this.setRouterTo("/products/" + bookIsbn);
-          } else {
-            alert("Book added successfully!");
-            this.$router.go(0);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-          alert("An error occurred while posting image!");
-        });
     },
 
     // UPDATE

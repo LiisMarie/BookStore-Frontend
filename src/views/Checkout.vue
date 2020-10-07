@@ -97,7 +97,8 @@ export default {
   computed: {
     ...mapGetters(["shoppingCart", "purchaseTotalPrice"])
   },
-  beforeCreate() {
+  created() {
+    this.$store.commit("authenticate", { loggedInUserId: 1 }); // TODO part2 real user authentication
     this.$store.dispatch("loadShoppingCart");
   }
 };

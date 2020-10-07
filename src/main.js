@@ -8,8 +8,6 @@ import "mutationobserver-shim";
 import "./plugins/bootstrap-vue";
 import "./plugins/font-awesome";
 import "./plugins/vuelidate";
-import "./mixins/backMixin";
-import "./mixins/helpersMixin";
 
 Vue.config.productionTip = false;
 
