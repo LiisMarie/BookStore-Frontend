@@ -344,7 +344,10 @@ export default {
           return false;
         },
         isNotTooBig(image) {
-          return image.size <= 1024 * 1024;
+          if (image != null) {
+            return image.size <= 1024 * 1024;
+          }
+          return false;
         }
       }
     }
