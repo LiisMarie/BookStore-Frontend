@@ -1,5 +1,4 @@
-image: node:lts-alpine
- #Straight copy-paste from Oleg.
+image: "node:lts-alpine"
  #ToDo: Basically everything.
 stages:
   #- build
@@ -10,13 +9,25 @@ before_script:
   - npm install
 
 cache:
-  stage: deploy
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
     # Enables git-lab CI caching. Both .cache and public must be cached, otherwise builds will fail.
     - .cache/
     - public/
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public/ || true
+    - npm run export -- --basepath $CI_PROJECT_NAME
+    - cp -a bookstore/export/$CI_PROJECT_NAME/* public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+
 
 #build bookstore-front:
 #  stage: build
