@@ -12,6 +12,10 @@ Team 11 - Rait Kulbok, Liis-Marie Kütt, Boriss Zahharov
 npm install
 ```
 
+### Port
+
+App runs on http://localhost:4200/
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
