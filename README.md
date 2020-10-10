@@ -1,6 +1,6 @@
 # BookStore - frontend
 
-Team 11 - Rait Kulbok, Liis-Marie Kütt, Broiss Zahharov
+Team 11 - Rait Kulbok, Liis-Marie Kütt, Boriss Zahharov
 
 [About the project (pages)](https://raitk3.github.io/)
 
