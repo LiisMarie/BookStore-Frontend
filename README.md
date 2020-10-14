@@ -8,18 +8,22 @@ Team 11 - Rait Kulbok, Liis-Marie Kütt, Boriss Zahharov
 [Clone backend from here](https://gitlab.cs.ttu.ee/rakulb/iti0203-2020-backend-team11-bookstore.git)
 
 ## Project setup
+###### NB! Vue is globally installed.
+
+### Download package and its dependencies
+
 ```
 npm install
 ```
-
-### Port
-
-App runs on http://localhost:4200/
 
 ### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
+
+### Port
+
+App runs on http://localhost:4200/
 
 ### Compiles and minifies for production
 ```
