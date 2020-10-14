@@ -6,7 +6,7 @@ import "../mixins/shoppingMixin";
 
 export default () => {
   return axios.create({
-    baseURL: "http://localhost:8080/api",
+    baseURL: "/api/",
     withCredentials: false,
     headers: {
       Accept: "application/json",
