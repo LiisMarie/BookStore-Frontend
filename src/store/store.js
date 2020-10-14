@@ -22,9 +22,7 @@ export default new Vuex.Store({
     SET_ShoppingCart(state, shoppingCart) {
       state.shoppingCart = shoppingCart;
       let totalPrice = 0;
-      for (const i in shoppingCart) {
-        totalPrice += shoppingCart[i].cost;
-      }
+      shoppingCart.map(item => (totalPrice += item.cost));
       state.purchaseTotalPrice = totalPrice.toFixed(2);
     },
     SET_ProductToDelete(state, { productToDelete }) {
