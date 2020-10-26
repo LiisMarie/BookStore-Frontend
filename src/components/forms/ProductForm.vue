@@ -313,15 +313,7 @@ export default {
       },
       author: {
         required,
-        minLength: minLength(1),
-        containsOnlyLettersAndCommas(author) {
-          if (author != null) {
-            return !/[^a-zA-Z]/.test(
-              author.replaceAll(",", "").replaceAll(" ", "")
-            );
-          }
-          return false;
-        }
+        minLength: minLength(1)
       },
       genre: {
         required
