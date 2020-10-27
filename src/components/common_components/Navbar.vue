@@ -30,6 +30,12 @@
                 ><font-awesome-icon :icon="['fas', 'user']"
               /></b-nav-item>
               <div class="dropdown-content">
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  @click.prevent="route_to('/registration')"
+                  >Registration</a
+                >
                 <a href="#" class="dropdown-item">Account</a>
                 <a href="#" class="dropdown-item">Log out</a>
               </div>
