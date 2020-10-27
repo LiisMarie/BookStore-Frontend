@@ -14,6 +14,7 @@ Vue.mixin({
     },
 
     setRouterTo(path) {
+      window.scrollTo(0, 0);
       this.$router.push(path);
     },
 
