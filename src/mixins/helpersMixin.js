@@ -14,6 +14,7 @@ Vue.mixin({
     },
 
     setRouterTo(path) {
+      window.scrollTo(0, 0);
       this.$router.push(path);
     },
 
@@ -49,6 +50,17 @@ Vue.mixin({
         byteArrays[sliceIndex] = new Uint8Array(bytes);
       }
       return new File(byteArrays, tempfilename, { type: contentType });
+    },
+
+    isEmailValid(email) {
+      return email.includes("@");
+    },
+
+    isPasswordStrongEnough(password) {
+      const passwordRegex = new RegExp(
+        "^(?=.*[a-z\\\u0080-\\\uFFFF -])(?=.*[A-Z\\\u0080-\\\uFFFF -])(?=.*[0-9])(?=.{8,})"
+      );
+      return passwordRegex.test(password);
     }
   }
 });

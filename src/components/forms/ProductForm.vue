@@ -188,9 +188,6 @@
         </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button v-if="!addBook" class="ml-2" @click="resetForm()"
-          >Reset</b-button
-        >
       </b-form>
     </b-card>
   </b-container>
@@ -230,16 +227,6 @@ export default {
     validateState(name) {
       const { $dirty, $error } = this.$v.form[name];
       return $dirty ? !$error : null;
-    },
-    resetForm() {
-      this.form = {
-        name: null,
-        food: null
-      };
-
-      this.$nextTick(() => {
-        this.$v.$reset();
-      });
     },
     onSubmit() {
       this.$v.form.$touch();
@@ -313,15 +300,7 @@ export default {
       },
       author: {
         required,
-        minLength: minLength(1),
-        containsOnlyLettersAndCommas(author) {
-          if (author != null) {
-            return !/[^a-zA-Z]/.test(
-              author.replaceAll(",", "").replaceAll(" ", "")
-            );
-          }
-          return false;
-        }
+        minLength: minLength(1)
       },
       genre: {
         required
