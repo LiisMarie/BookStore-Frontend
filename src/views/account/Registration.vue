@@ -164,16 +164,12 @@ export default {
       email: {
         required,
         isValid(email) {
-          // TODO email validation
-          console.log(email);
-          return true;
+          return this.isEmailValid(email);
         }
       },
       password: {
         required,
         isStrongEnough(password) {
-          // TODO strength check
-          console.log(password);
           return this.isPasswordStrongEnough(password);
         }
       },

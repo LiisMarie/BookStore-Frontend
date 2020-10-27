@@ -52,6 +52,10 @@ Vue.mixin({
       return new File(byteArrays, tempfilename, { type: contentType });
     },
 
+    isEmailValid(email) {
+      return email.includes("@");
+    },
+
     isPasswordStrongEnough(password) {
       const passwordRegex = new RegExp(
         "^(?=.*[a-z\\\u0080-\\\uFFFF -])(?=.*[A-Z\\\u0080-\\\uFFFF -])(?=.*[0-9])(?=.{8,})"

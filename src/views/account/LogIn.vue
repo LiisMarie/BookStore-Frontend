@@ -13,7 +13,6 @@
               <b-form-input
                 id="input-email"
                 name="input-email"
-                type="email"
                 v-model="$v.form.email.$model"
                 :state="validateState('email')"
                 aria-describedby="input-email-live-feedback"
@@ -91,12 +90,7 @@ export default {
   validations: {
     form: {
       email: {
-        required,
-        isValid(email) {
-          // TODO email validation
-          console.log(email);
-          return true;
-        }
+        required
       },
       password: {
         required
