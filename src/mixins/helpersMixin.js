@@ -50,6 +50,13 @@ Vue.mixin({
         byteArrays[sliceIndex] = new Uint8Array(bytes);
       }
       return new File(byteArrays, tempfilename, { type: contentType });
+    },
+
+    isPasswordStrongEnough(password) {
+      const passwordRegex = new RegExp(
+        "^(?=.*[a-z\\\u0080-\\\uFFFF -])(?=.*[A-Z\\\u0080-\\\uFFFF -])(?=.*[0-9])(?=.{8,})"
+      );
+      return passwordRegex.test(password);
     }
   }
 });

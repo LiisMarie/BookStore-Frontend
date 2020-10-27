@@ -78,7 +78,13 @@
               ></b-form-input>
 
               <b-form-invalid-feedback id="input-password-live-feedback"
-                >Password must contain ...
+                >Password must:
+                <ul>
+                  <li>contain at least 1 lowercase alphabetical character</li>
+                  <li>contain at least 1 uppercase alphabetical character</li>
+                  <li>contain at least 1 numeric character</li>
+                  <li>be eight characters or longer</li>
+                </ul>
               </b-form-invalid-feedback>
             </b-form-group>
 
@@ -98,7 +104,7 @@
               ></b-form-input>
 
               <b-form-invalid-feedback id="input-repeatPassword-live-feedback"
-                >Passwords must be identical..
+                >Passwords must be identical.
               </b-form-invalid-feedback>
             </b-form-group>
 
@@ -168,7 +174,7 @@ export default {
         isStrongEnough(password) {
           // TODO strength check
           console.log(password);
-          return true;
+          return this.isPasswordStrongEnough(password);
         }
       },
       repeatPassword: {
