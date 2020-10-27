@@ -34,7 +34,13 @@
                   href="#"
                   class="dropdown-item"
                   @click.prevent="route_to('/registration')"
-                  >Registration</a
+                  >Register</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  @click.prevent="route_to('/log-in')"
+                  >Log in</a
                 >
                 <a href="#" class="dropdown-item">Account</a>
                 <a href="#" class="dropdown-item">Log out</a>

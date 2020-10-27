@@ -9,6 +9,7 @@ import AddProduct from "@/views/AddProduct";
 import EditProduct from "@/views/EditProduct";
 import SearchProducts from "@/views/SearchProducts";
 import Registration from "@/views/account/Registration";
+import LogIn from "@/views/account/LogIn";
 
 Vue.use(VueRouter);
 
@@ -60,6 +61,11 @@ const routes = [
     path: "/registration",
     name: "Registration",
     component: Registration
+  },
+  {
+    path: "/log-in",
+    name: "Log in",
+    component: LogIn
   }
 ];
 
