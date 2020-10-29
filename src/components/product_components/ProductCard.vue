@@ -61,7 +61,7 @@ export default {
   props: ["product", "updateCart", "deleteProductModal"],
   methods: {
     goToEditBook(isbn) {
-      this.setRouterTo("/edit-book/" + isbn);
+      this.setRouterTo("/products/edit/" + isbn);
     }
   },
   mounted() {

@@ -30,7 +30,7 @@ export default {
     onSubmit() {
       if (this.userInput.length !== 0)
         this.setRouterTo(
-          "/search-books/" + this.replaceSpaceWithUnderscore(this.userInput)
+          "/products/search/" + this.replaceSpaceWithUnderscore(this.userInput)
         );
     }
   }

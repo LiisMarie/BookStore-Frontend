@@ -38,7 +38,7 @@ export default {
   methods: {
     seeAll(category) {
       this.setRouterTo(
-        "/categories/" + this.replaceSpaceWithUnderscore(category)
+        "/products/categories/" + this.replaceSpaceWithUnderscore(category)
       );
     }
   }

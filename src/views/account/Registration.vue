@@ -115,7 +115,9 @@
               <br />
 
               Already have an account?
-              <b-link href="#" @click="setRouterTo('/log-in')">Log in</b-link>
+              <b-link href="#" @click="setRouterTo('/account/login')"
+                >Log in</b-link
+              >
             </div>
           </b-form>
         </b-card>

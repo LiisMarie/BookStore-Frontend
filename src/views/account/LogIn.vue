@@ -50,7 +50,7 @@
               <br />
 
               Don't have an account?
-              <b-link href="#" @click="setRouterTo('/registration')"
+              <b-link href="#" @click="setRouterTo('/account/register')"
                 >Sign up</b-link
               >
             </div>

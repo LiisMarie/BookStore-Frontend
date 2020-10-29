@@ -21,12 +21,12 @@ const routes = [
     component: Home
   },
   {
-    path: "/all-products", // TODO rename to /products/all
+    path: "/products/all",
     name: "AllProducts",
     component: AllProducts
   },
   {
-    path: "/categories/:category", // TODO rename to /products/categories/:category
+    path: "/products/categories/:category",
     name: "Categories",
     component: Categories,
     props: true
@@ -42,29 +42,29 @@ const routes = [
     component: Checkout
   },
   {
-    path: "/add-book", // TODO rename to /products/add
+    path: "/products/add",
     name: "Add book",
     component: AddProduct
   },
   {
-    path: "/edit-book/:productIsbn", // TODO rename to /products/edit/:productIsbn
+    path: "/products/edit/:productIsbn",
     name: "Edit book",
     component: EditProduct,
     props: true
   },
   {
-    path: "/search-books/:searchInput", // TODO rename to /products/search/:searchInput
+    path: "/products/search/:searchInput",
     name: "Search books",
     component: SearchProducts,
     props: true
   },
   {
-    path: "/registration", // TODO rename to /account/register
+    path: "/account/register",
     name: "Registration",
     component: Registration
   },
   {
-    path: "/log-in", // TODO rename to /account/login
+    path: "/account/login",
     name: "Log in",
     component: LogIn
   },
