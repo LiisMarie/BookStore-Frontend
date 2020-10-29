@@ -42,7 +42,12 @@
                   @click.prevent="route_to('/log-in')"
                   >Log in</a
                 >
-                <a href="#" class="dropdown-item">Account</a>
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  @click.prevent="route_to('/account/information')"
+                  >My account</a
+                >
                 <a href="#" class="dropdown-item">Log out</a>
               </div>
             </div>

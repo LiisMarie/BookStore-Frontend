@@ -10,6 +10,7 @@ import EditProduct from "@/views/EditProduct";
 import SearchProducts from "@/views/SearchProducts";
 import Registration from "@/views/account/Registration";
 import LogIn from "@/views/account/LogIn";
+import AccountInformation from "@/views/account/AccountInformation";
 
 Vue.use(VueRouter);
 
@@ -20,12 +21,12 @@ const routes = [
     component: Home
   },
   {
-    path: "/all-products",
+    path: "/all-products", // TODO rename to /products/all
     name: "AllProducts",
     component: AllProducts
   },
   {
-    path: "/categories/:category",
+    path: "/categories/:category", // TODO rename to /products/categories/:category
     name: "Categories",
     component: Categories,
     props: true
@@ -41,31 +42,36 @@ const routes = [
     component: Checkout
   },
   {
-    path: "/add-book",
+    path: "/add-book", // TODO rename to /products/add
     name: "Add book",
     component: AddProduct
   },
   {
-    path: "/edit-book/:productIsbn",
+    path: "/edit-book/:productIsbn", // TODO rename to /products/edit/:productIsbn
     name: "Edit book",
     component: EditProduct,
     props: true
   },
   {
-    path: "/search-books/:searchInput",
+    path: "/search-books/:searchInput", // TODO rename to /products/search/:searchInput
     name: "Search books",
     component: SearchProducts,
     props: true
   },
   {
-    path: "/registration",
+    path: "/registration", // TODO rename to /account/register
     name: "Registration",
     component: Registration
   },
   {
-    path: "/log-in",
+    path: "/log-in", // TODO rename to /account/login
     name: "Log in",
     component: LogIn
+  },
+  {
+    path: "/account/information",
+    name: "Account information",
+    component: AccountInformation
   }
 ];
 
