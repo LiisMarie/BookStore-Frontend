@@ -2,7 +2,7 @@
   <b-container class="mt-3">
     <b-row class="justify-content-md-center">
       <b-col md="7" lg="6">
-        <b-card header="Register">
+        <b-card header="Create an Account">
           <b-form @submit.stop.prevent="onSubmit">
             <!-- name -->
             <b-form-group
@@ -108,12 +108,15 @@
               </b-form-invalid-feedback>
             </b-form-group>
 
-            <b-button type="submit" variant="primary">Register</b-button>
+            <div class="centered">
+              <b-button type="submit" variant="primary">Join</b-button>
 
-            <br />
-            <br />
-            Have an account?
-            <b-link href="#" @click="setRouterTo('/log-in')">Log in</b-link>
+              <br />
+              <br />
+
+              Already have an account?
+              <b-link href="#" @click="setRouterTo('/log-in')">Log in</b-link>
+            </div>
           </b-form>
         </b-card>
       </b-col>
@@ -181,3 +184,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.centered {
+  text-align: center;
+}
+</style>
