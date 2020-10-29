@@ -43,14 +43,17 @@
               </b-form-invalid-feedback>
             </b-form-group>
 
-            <b-button type="submit" variant="primary">Log in</b-button>
+            <div class="centered">
+              <b-button type="submit" variant="primary">Log in</b-button>
 
-            <br />
-            <br />
-            Don't have an account?
-            <b-link href="#" @click="setRouterTo('/registration')"
-              >Sign up</b-link
-            >
+              <br />
+              <br />
+
+              Don't have an account?
+              <b-link href="#" @click="setRouterTo('/registration')"
+                >Sign up</b-link
+              >
+            </div>
           </b-form>
         </b-card>
       </b-col>
@@ -99,3 +102,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.centered {
+  text-align: center;
+}
+</style>
