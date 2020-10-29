@@ -10,7 +10,7 @@
         <a
           href="#"
           class="navbar-text mr-3"
-          @click.prevent="route_to('/search-books/_')"
+          @click.prevent="route_to('/products/search/_')"
         >
           <font-awesome-icon :icon="['fas', 'search']"
         /></a>
@@ -33,16 +33,21 @@
                 <a
                   href="#"
                   class="dropdown-item"
-                  @click.prevent="route_to('/registration')"
+                  @click.prevent="route_to('/account/register')"
                   >Register</a
                 >
                 <a
                   href="#"
                   class="dropdown-item"
-                  @click.prevent="route_to('/log-in')"
+                  @click.prevent="route_to('/account/login')"
                   >Log in</a
                 >
-                <a href="#" class="dropdown-item">Account</a>
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  @click.prevent="route_to('/account/information')"
+                  >My account</a
+                >
                 <a href="#" class="dropdown-item">Log out</a>
               </div>
             </div>
@@ -54,7 +59,7 @@
 
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
-          <b-nav-item href="#" @click.prevent="route_to('/all-products')"
+          <b-nav-item href="#" @click.prevent="route_to('/products/all')"
             >All books</b-nav-item
           >
           <b-nav-item-dropdown text="Categories" left>
@@ -62,13 +67,15 @@
               href="#"
               v-for="category in categories"
               :key="category.genreName"
-              @click.prevent="route_to('/categories/' + category.genreName)"
+              @click.prevent="
+                route_to('/products/categories/' + category.genreName)
+              "
             >
               {{ category.genreName }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item href="#" @click.prevent="route_to('/add-book')"
+          <b-nav-item href="#" @click.prevent="route_to('/products/add')"
             >Add book</b-nav-item
           >
         </b-navbar-nav>
