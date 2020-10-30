@@ -6,7 +6,7 @@ stages:
 
 build front:
   stage: build
-  image: node:latest
+  image: node:12-alpine
   cache:
     paths:
       - node_modules
