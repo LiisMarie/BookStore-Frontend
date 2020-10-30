@@ -1,9 +1,10 @@
+image: openjdk:11
  # Copied from Oleg Pahhomovs tutorial
 stages:
   - build
   - deploy
 
-build heroes:
+build front:
   stage: build
   image: node:latest
   cache:
@@ -18,7 +19,7 @@ build heroes:
     - npm install
     - npm run build
 
-deploy heroes:
+deploy front:
   stage: deploy
   tags:
     - bookstore-front
