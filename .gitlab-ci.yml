@@ -13,7 +13,7 @@ build heroes:
     paths:
       - dist
   tags:
-    - heroes
+    - bookstore-front
   script:
     - npm install
     - npm run build
@@ -21,7 +21,7 @@ build heroes:
 deploy heroes:
   stage: deploy
   tags:
-    - heroes
+    - bookstore-front
   script:
     - mkdir -p ~/front-deployment
     - rm -rf ~/front-deployment/*
