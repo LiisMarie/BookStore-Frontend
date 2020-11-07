@@ -28,3 +28,4 @@ deploy front:
     - rm -rf ~/front-deployment/*
     # This is where 100% copy-paste ends
     - cp -r dist/. ~/front-deployment
+    - serve -s dist
