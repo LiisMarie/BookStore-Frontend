@@ -26,5 +26,6 @@ deploy front:
   script:
     - mkdir -p ~/front-deployment
     - rm -rf ~/front-deployment/*
+    - cp -r Dockerfile ~/front-deployment
     # This is where 100% copy-paste ends
     - cp -r dist/. ~/front-deployment
