@@ -1,4 +1,5 @@
 FROM node:latest as build-stage
+WORKDIR /front-deployment
 COPY package*.json ./
 RUN npm install
 COPY ./ .
