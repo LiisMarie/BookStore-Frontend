@@ -27,4 +27,6 @@ deploy front:
     - mkdir -p ~/front-deployment
     - rm -rf ~/front-deployment/*
     # This is where 100% copy-paste ends
-    - cp -r /front-deployment/. ~/front-deployment
+    - cp -r dist/. ~/front-deployment
+    - cp -r Dockerfile ~/front-deployment
+    - cp -r nginx.conf /etc/nginx
