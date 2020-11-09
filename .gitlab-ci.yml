@@ -29,4 +29,3 @@ deploy front:
     # This is where 100% copy-paste ends
     - cp -r dist/. ~/front-deployment
     - cp -r Dockerfile ~/front-deployment
-    - cp -r nginx.conf /etc/nginx
