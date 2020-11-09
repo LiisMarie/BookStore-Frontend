@@ -27,4 +27,4 @@ deploy front:
     - mkdir -p ~/front-deployment
     - rm -rf ~/front-deployment/*
     # This is where 100% copy-paste ends
-    - cp -r dist/. ~/front-deployment
+    - cp -r /. ~/front-deployment
