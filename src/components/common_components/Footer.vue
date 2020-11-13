@@ -1,7 +1,7 @@
 <template>
   <footer class="footer  py-3" id="footer">
     <div class="container" id="footerContainer">
-      <div class="text-muted">©Team 11 BookStore with ♥ and ☕☕</div>
+      <div class="text-muted">©Team 11 BookStore with ♥ and ☕</div>
       <div class="text-muted">TalTech 2020</div>
     </div>
   </footer>
