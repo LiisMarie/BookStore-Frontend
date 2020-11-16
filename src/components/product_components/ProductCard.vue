@@ -19,38 +19,40 @@
       <p @click="goToDetails(product.isbn)">
         Price: {{ product.cost.toFixed(2) }}€
       </p>
-
-      <b-button
-        size="sm"
-        variant="success"
-        @click.prevent="updateCart(product)"
-      >
-        <font-awesome-icon :icon="['fas', 'cart-plus']" />
-      </b-button>
-      <b-button
-        class="action-btn"
-        size="sm"
-        variant="info"
-        @click="goToDetails(product.isbn)"
-      >
-        <font-awesome-icon :icon="['fas', 'info']" />
-      </b-button>
-      <b-button
-        class="action-btn"
-        size="sm"
-        variant="secondary"
-        @click="goToEditBook(product.isbn)"
-      >
-        <font-awesome-icon :icon="['fas', 'edit']" />
-      </b-button>
-      <b-button
-        class="action-btn"
-        size="sm"
-        variant="danger"
-        @click="deleteProductModal(product)"
-      >
-        <font-awesome-icon :icon="['fas', 'trash']" />
-      </b-button>
+      <div class="div_items">
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="danger"
+          @click="deleteProductModal(product)"
+        >
+          <font-awesome-icon :icon="['fas', 'trash']" />
+        </b-button>
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="secondary"
+          @click="goToEditBook(product.isbn)"
+        >
+          <font-awesome-icon :icon="['fas', 'edit']" />
+        </b-button>
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="info"
+          @click="goToDetails(product.isbn)"
+        >
+          <font-awesome-icon :icon="['fas', 'info']" />
+        </b-button>
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="success"
+          @click.prevent="updateCart(product)"
+        >
+          <font-awesome-icon :icon="['fas', 'cart-plus']" />
+        </b-button>
+      </div>
     </b-card>
   </b-card-group>
 </template>
@@ -73,5 +75,8 @@ export default {
 <style lang="scss">
 .action-btn {
   margin-left: 10px;
+}
+.div_items {
+  align-content: baseline;
 }
 </style>
