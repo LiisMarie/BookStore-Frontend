@@ -240,6 +240,9 @@ export default {
       }
     }
   },
+  beforeMount() {
+    console.log("hhehehhe");
+  },
   async created() {
     this.genres.push({ value: null, text: "Choose..." });
     const categoriesMap = await this.getCategories();
@@ -249,7 +252,6 @@ export default {
 
     if (this.operation === "edit") {
       this.product = await this.getBookByIsbn(this.$route.params.productIsbn);
-
       this.form.isbn = this.product.isbn;
       this.form.heading = this.product.heading;
       this.form.releaseYear = this.product.releaseYear;

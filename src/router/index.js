@@ -42,7 +42,7 @@ const routes = [
     component: Checkout
   },
   {
-    path: "/products/add",
+    path: "/products/add/add",
     name: "Add book",
     component: AddProduct
   },

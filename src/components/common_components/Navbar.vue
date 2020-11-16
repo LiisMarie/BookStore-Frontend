@@ -75,7 +75,7 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item href="#" @click.prevent="route_to('/products/add')"
+          <b-nav-item href="#" @click.prevent="route_to('/products/add/add')"
             >Add book</b-nav-item
           >
         </b-navbar-nav>
@@ -91,7 +91,8 @@ export default {
   methods: {
     route_to(path) {
       const replacedPath = this.replaceSpaceWithUnderscore(path);
-      if (this.$route.path !== replacedPath) this.setRouterTo(replacedPath);
+      this.setRouterTo(replacedPath);
+      //if (this.$route.path !== replacedPath) this.setRouterTo(replacedPath);
     }
   }
 };
