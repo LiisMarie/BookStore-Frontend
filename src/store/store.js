@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Api from "../services/Api";
 
+import { auth } from "./auth.module";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -56,5 +58,7 @@ export default new Vuex.Store({
         .catch(err => console.log(err));
     }
   },
-  modules: {}
+  modules: {
+    auth
+  }
 });

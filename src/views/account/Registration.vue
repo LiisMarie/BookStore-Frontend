@@ -92,14 +92,30 @@
 
             <div class="centered">
               <b-button type="submit" variant="primary">Join</b-button>
+              <div>
+                <br />
+                <div
+                  v-if="message"
+                  class="alert"
+                  :class="successful ? 'alert-success' : 'alert-danger'"
+                >
+                  {{ message }}
+                  <br />
 
-              <br />
-              <br />
+                  Go to login
+                  <b-link href="#" @click="setRouterTo('/account/login')"
+                    >Log in</b-link
+                  >
+                </div>
+              </div>
 
-              Already have an account?
-              <b-link href="#" @click="setRouterTo('/account/login')"
-                >Log in</b-link
-              >
+              <div v-if="!successful">
+                <br />
+                Already have an account?
+                <b-link href="#" @click="setRouterTo('/account/login')"
+                  >Log in</b-link
+                >
+              </div>
             </div>
           </b-form>
         </b-card>
@@ -111,6 +127,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, sameAs } from "vuelidate/lib/validators";
+import User from "@/models/user";
 
 export default {
   name: "Registration",
@@ -121,8 +138,20 @@ export default {
         email: "",
         password: "",
         repeatPassword: ""
-      }
+      },
+      message: "",
+      successful: ""
     };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+  mounted() {
+    if (this.loggedIn) {
+      this.setRouterTo("/account/information");
+    }
   },
   methods: {
     validateState(name) {
@@ -130,12 +159,28 @@ export default {
       return $dirty ? !$error : null;
     },
     onSubmit() {
+      this.message = "";
+
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      alert("Account created!");
-      // TODO call/create register method (PART 3)
+
+      this.$store
+        .dispatch(
+          "auth/register",
+          new User(this.form.username, this.form.password, this.form.email)
+        )
+        .then(
+          () => {
+            this.successful = true;
+            this.message = "An account was created";
+          },
+          () => {
+            this.successful = false;
+            this.message = "A problem occurred while creating an account";
+          }
+        );
     }
   },
   mixins: [validationMixin],
