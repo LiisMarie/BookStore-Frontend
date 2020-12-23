@@ -46,7 +46,14 @@
             <div class="centered">
               <b-button type="submit" variant="primary">Log in</b-button>
 
-              <br />
+              <div class="form-group">
+                <br />
+
+                <div v-if="message" class="alert alert-danger" role="alert">
+                  {{ message }}
+                </div>
+              </div>
+
               <br />
 
               Don't have an account?
@@ -64,6 +71,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
+import User from "@/models/user";
 
 export default {
   name: "Registration",
@@ -72,8 +80,19 @@ export default {
       form: {
         username: "",
         password: ""
-      }
+      },
+      message: ""
     };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+  created() {
+    if (this.loggedIn) {
+      this.setRouterTo("/account/information");
+    }
   },
   methods: {
     validateState(name) {
@@ -85,8 +104,20 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-      alert("Logged in to an account!");
-      // TODO call/create log in method (PART 3)
+      this.$store
+        .dispatch(
+          "auth/login",
+          new User(this.form.username, this.form.password)
+        )
+        .then(
+          () => {
+            this.$router.push("/account/information");
+          },
+          () => {
+            //alert("Wrong username or password!");
+            this.message = "Wrong username or password!";
+          }
+        );
     }
   },
   mixins: [validationMixin],

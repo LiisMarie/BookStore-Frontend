@@ -2,21 +2,30 @@
   <b-container class="mt-3">
     <b-row class="justify-content-md-center">
       <b-col md="7" lg="6">
-        <b-card header="My account information">
-          <!-- username -->
-          <b-form-group
-            id="input-group-username"
-            label="Username"
-            label-for="input-username"
-          >
-            <b-form-input
-              id="input-username"
-              name="input-username"
-              disabled
-              v-model="username"
-            ></b-form-input>
-          </b-form-group>
-        </b-card>
+        <header class="jumbotron">
+          <h4>
+            <strong>{{ currentUser.username }}</strong> Profile
+          </h4>
+        </header>
+        <p>
+          <strong>Token:</strong>
+          {{ currentUser.token.substring(0, 20) }} ...
+          {{ currentUser.token.substr(currentUser.token.length - 20) }}
+        </p>
+        <p>
+          <strong>Id:</strong>
+          {{ currentUser.userId }}
+        </p>
+        <p>
+          <strong>Email:</strong>
+          {{ currentUser.email }}
+        </p>
+        <strong>Authorities:</strong>
+        <ul>
+          <li>
+            {{ currentUser.role }}
+          </li>
+        </ul>
 
         <b-button
           class="action-btn"
@@ -33,19 +42,21 @@
 <script>
 export default {
   name: "AccountInformation",
-  data() {
-    return {
-      username: ""
-    };
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.setRouterTo("/account/login");
+    }
   },
   methods: {
     logOut() {
-      // TODO log out logic
+      this.$store.dispatch("auth/logout");
+      this.setRouterTo("/account/login");
     }
-  },
-  async mounted() {
-    // TODO fetch/create method for user data retrieval (PART 3)
-    this.username = "username comes here";
   }
 };
 </script>
