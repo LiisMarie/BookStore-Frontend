@@ -53,7 +53,8 @@ Vue.mixin({
     },
 
     isEmailValid(email) {
-      return email.includes("@");
+      const emailRegex = new RegExp("^(.+)@(.+)$");
+      return emailRegex.test(email);
     },
 
     isPasswordStrongEnough(password) {
