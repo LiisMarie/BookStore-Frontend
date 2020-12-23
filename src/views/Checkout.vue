@@ -97,9 +97,25 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
     ...mapGetters(["shoppingCart", "purchaseTotalPrice"])
   },
   created() {
+    if (this.currentUser) {
+      if (
+        !(
+          this.isLoggedAccountAdmin(this.currentUser) ||
+          this.isLoggedAccountUser(this.currentUser)
+        )
+      ) {
+        this.setRouterTo("/");
+      }
+    } else {
+      this.setRouterTo("/");
+    }
+
     this.$store.commit("authenticate", { loggedInUserId: 1 }); // TODO part2 real user authentication
     this.$store.dispatch("loadShoppingCart");
   }

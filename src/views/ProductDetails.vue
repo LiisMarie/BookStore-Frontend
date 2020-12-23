@@ -65,6 +65,7 @@
           class="action-btn"
           variant="secondary"
           @click="goToEditBook(product.isbn)"
+          v-if="isAdmin"
         >
           <font-awesome-icon :icon="['fas', 'edit']" />
           Edit
@@ -73,6 +74,7 @@
           class="action-btn"
           variant="danger"
           @click="deleteProductModal(product)"
+          v-if="isAdmin"
         >
           <font-awesome-icon :icon="['fas', 'trash']" />
           Delete
@@ -91,6 +93,14 @@ export default {
     };
   },
   props: ["updateCart", "deleteProductModal"],
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+    isAdmin() {
+      return this.isLoggedAccountAdmin(this.currentUser);
+    }
+  },
   methods: {
     goToEditBook(isbn) {
       this.setRouterTo("/products/edit/" + isbn);

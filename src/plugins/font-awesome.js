@@ -10,7 +10,8 @@ import {
   faTrash,
   faUser,
   faEdit,
-  faSearch
+  faSearch,
+  faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -23,7 +24,8 @@ library.add(
   faTrash,
   faUser,
   faEdit,
-  faSearch
+  faSearch,
+  faSignInAlt
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

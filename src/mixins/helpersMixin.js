@@ -62,6 +62,20 @@ Vue.mixin({
         "^(?=.*[a-z\\\u0080-\\\uFFFF -])(?=.*[A-Z\\\u0080-\\\uFFFF -])(?=.*[0-9])(?=.{8,})"
       );
       return passwordRegex.test(password);
+    },
+
+    isLoggedAccountAdmin(user) {
+      if (user) {
+        return user.role === "ADMIN";
+      }
+      return false;
+    },
+
+    isLoggedAccountUser(user) {
+      if (user) {
+        return user.role === "USER";
+      }
+      return false;
     }
   }
 });

@@ -25,6 +25,7 @@
           size="sm"
           variant="danger"
           @click="deleteProductModal(product)"
+          v-if="isAdmin"
         >
           <font-awesome-icon :icon="['fas', 'trash']" />
         </b-button>
@@ -33,6 +34,7 @@
           size="sm"
           variant="secondary"
           @click="goToEditBook(product.isbn)"
+          v-if="isAdmin"
         >
           <font-awesome-icon :icon="['fas', 'edit']" />
         </b-button>
@@ -61,6 +63,14 @@
 export default {
   name: "ProductCard",
   props: ["product", "updateCart", "deleteProductModal"],
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+    isAdmin() {
+      return this.isLoggedAccountAdmin(this.currentUser);
+    }
+  },
   methods: {
     goToEditBook(isbn) {
       this.setRouterTo("/products/edit/" + isbn);
