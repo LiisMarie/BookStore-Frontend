@@ -4,41 +4,23 @@
       <b-col md="7" lg="6">
         <b-card header="Create an Account">
           <b-form @submit.stop.prevent="onSubmit">
-            <!-- name -->
+            <!-- username -->
             <b-form-group
-              id="input-group-name"
-              label="Name"
-              label-for="input-name"
+              id="input-group-username"
+              label="Username"
+              label-for="input-username"
             >
               <b-form-input
-                id="input-name"
-                name="input-name"
-                v-model="$v.form.name.$model"
-                :state="validateState('name')"
-                aria-describedby="input-name-live-feedback"
+                id="input-username"
+                name="input-username"
+                v-model="$v.form.username.$model"
+                :state="validateState('username')"
+                aria-describedby="input-username-live-feedback"
               ></b-form-input>
 
-              <b-form-invalid-feedback id="input-name-live-feedback"
-                >This is a required field.
-              </b-form-invalid-feedback>
-            </b-form-group>
-
-            <!-- surname -->
-            <b-form-group
-              id="input-group-surname"
-              label="Surname"
-              label-for="input-surname"
-            >
-              <b-form-input
-                id="input-surname"
-                name="input-surname"
-                v-model="$v.form.surname.$model"
-                :state="validateState('surname')"
-                aria-describedby="input-surname-live-feedback"
-              ></b-form-input>
-
-              <b-form-invalid-feedback id="input-surname-live-feedback"
-                >This is a required field.
+              <b-form-invalid-feedback id="input-username-live-feedback"
+                >This is a required field. Username can contain only Latin
+                letters and numbers.
               </b-form-invalid-feedback>
             </b-form-group>
 
@@ -83,7 +65,7 @@
                   <li>contain at least 1 lowercase alphabetical character</li>
                   <li>contain at least 1 uppercase alphabetical character</li>
                   <li>contain at least 1 numeric character</li>
-                  <li>be eight characters or longer</li>
+                  <li>be 8 characters or longer</li>
                 </ul>
               </b-form-invalid-feedback>
             </b-form-group>
@@ -135,8 +117,7 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        surname: "",
+        username: "",
         email: "",
         password: "",
         repeatPassword: ""
@@ -160,11 +141,11 @@ export default {
   mixins: [validationMixin],
   validations: {
     form: {
-      name: {
-        required
-      },
-      surname: {
-        required
+      username: {
+        required,
+        isValid(username) {
+          return RegExp("^[A-Za-z0-9]+$").test(username);
+        }
       },
       email: {
         required,
