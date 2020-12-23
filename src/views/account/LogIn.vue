@@ -4,21 +4,21 @@
       <b-col md="7" lg="6">
         <b-card header="Log in">
           <b-form @submit.stop.prevent="onSubmit">
-            <!-- email -->
+            <!-- username -->
             <b-form-group
-              id="input-group-email"
-              label="Email"
-              label-for="input-email"
+              id="input-group-username"
+              label="Username"
+              label-for="input-username"
             >
               <b-form-input
-                id="input-email"
-                name="input-email"
-                v-model="$v.form.email.$model"
-                :state="validateState('email')"
-                aria-describedby="input-email-live-feedback"
+                id="input-username"
+                name="input-username"
+                v-model="$v.form.username.$model"
+                :state="validateState('username')"
+                aria-describedby="input-username-live-feedback"
               ></b-form-input>
 
-              <b-form-invalid-feedback id="input-email-live-feedback"
+              <b-form-invalid-feedback id="input-username-live-feedback"
                 >This is a required field.
               </b-form-invalid-feedback>
             </b-form-group>
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       form: {
-        email: "",
+        username: "",
         password: ""
       }
     };
@@ -92,7 +92,7 @@ export default {
   mixins: [validationMixin],
   validations: {
     form: {
-      email: {
+      username: {
         required
       },
       password: {
