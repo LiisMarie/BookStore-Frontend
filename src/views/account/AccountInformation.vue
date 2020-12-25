@@ -1,32 +1,24 @@
 <template>
   <b-container class="mt-3">
     <b-row class="justify-content-md-center">
-      <b-col md="7" lg="6">
-        <header class="jumbotron">
-          <h4>
-            <strong>{{ currentUser.username }}</strong> Profile
-          </h4>
-        </header>
-        <p>
-          <strong>Token:</strong>
-          {{ currentUser.token.substring(0, 20) }} ...
-          {{ currentUser.token.substr(currentUser.token.length - 20) }}
-        </p>
-        <p>
-          <strong>Id:</strong>
-          {{ currentUser.userId }}
-        </p>
-        <p>
-          <strong>Email:</strong>
-          {{ currentUser.email }}
-        </p>
-        <strong>Authorities:</strong>
-        <ul>
-          <li>
-            {{ currentUser.role }}
-          </li>
-        </ul>
-
+      <b-jumbotron>
+        <h4>
+          <strong>{{ currentUser.username }}</strong> Profile
+        </h4>
+        <br />
+        <img
+          id="profile-img"
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          class="profile-img-card"
+          alt="Profile picture"
+        />
+        <br />
+        <div>
+          Email:
+          <br />
+          <strong>{{ currentUser.email }}</strong>
+        </div>
+        <br />
         <b-button
           class="action-btn"
           @click="logOut()"
@@ -34,7 +26,7 @@
           size="sm"
           >Log out</b-button
         >
-      </b-col>
+      </b-jumbotron>
     </b-row>
   </b-container>
 </template>
@@ -66,5 +58,15 @@ export default {
   float: right;
   margin-right: 5px;
   margin-top: 20px;
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 </style>
