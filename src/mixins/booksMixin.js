@@ -85,7 +85,7 @@ Vue.mixin({
     async getBooksBySearch(searchInput) {
       let book = [];
       await Api()
-        .get("/data/search/" + searchInput)
+        .get("/data/search/?input=" + searchInput)
         .then(response => {
           book = response.data;
         })
@@ -96,7 +96,7 @@ Vue.mixin({
     async getSortedBooks(sortingAttribute) {
       let book = [];
       await Api()
-        .get("/data/sort/price/" + sortingAttribute)
+        .get("/data/sort/price?parameter=" + sortingAttribute)
         .then(response => {
           book = response.data;
         })
