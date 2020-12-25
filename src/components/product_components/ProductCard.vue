@@ -19,7 +19,24 @@
       <p @click="goToDetails(product.isbn)">
         Price: {{ product.cost.toFixed(2) }}€
       </p>
-      <div class="div_items">
+
+      <b-row align-h="center">
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="info"
+          @click="goToDetails(product.isbn)"
+        >
+          <font-awesome-icon :icon="['fas', 'info']" />
+        </b-button>
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="success"
+          @click.prevent="updateCart(product)"
+        >
+          <font-awesome-icon :icon="['fas', 'cart-plus']" />
+        </b-button>
         <b-button
           class="action-btn"
           size="sm"
@@ -38,23 +55,7 @@
         >
           <font-awesome-icon :icon="['fas', 'edit']" />
         </b-button>
-        <b-button
-          class="action-btn"
-          size="sm"
-          variant="info"
-          @click="goToDetails(product.isbn)"
-        >
-          <font-awesome-icon :icon="['fas', 'info']" />
-        </b-button>
-        <b-button
-          class="action-btn"
-          size="sm"
-          variant="success"
-          @click.prevent="updateCart(product)"
-        >
-          <font-awesome-icon :icon="['fas', 'cart-plus']" />
-        </b-button>
-      </div>
+      </b-row>
     </b-card>
   </b-card-group>
 </template>
@@ -85,8 +86,5 @@ export default {
 <style lang="scss">
 .action-btn {
   margin-left: 10px;
-}
-.div_items {
-  align-content: baseline;
 }
 </style>
