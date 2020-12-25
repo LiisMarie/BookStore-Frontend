@@ -17,6 +17,9 @@ class AuthService {
   }
 
   logout() {
+    Api(true).post(
+      "users/logout/" + JSON.parse(localStorage.getItem("user")).username
+    );
     localStorage.removeItem("user");
   }
 
