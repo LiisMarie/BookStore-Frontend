@@ -6,16 +6,20 @@ Vue.mixin({
     // CREATE
 
     async addToCart(product) {
-      const params = {
-        userId: JSON.parse(localStorage.getItem("user")).userId,
-        bookId: product.bookId
-      };
-      await Api(true)
-        .post("/shopping", params)
-        .catch(err => console.log(err));
-      this.productHeading = product.heading;
-      this.productCost = product.cost;
-      this.productPicture = product.image;
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        const params = {
+          userId: user.userId,
+          bookId: product.bookId
+        };
+        await Api(true)
+          .post("/shopping", params)
+          .catch(err => console.log(err));
+        this.productHeading = product.heading;
+        this.productCost = product.cost;
+        this.productPicture = product.image;
+      }
+
       this.$bvModal.show("addToCartModal");
     }
   }
