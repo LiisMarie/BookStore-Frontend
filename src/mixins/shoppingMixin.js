@@ -7,10 +7,10 @@ Vue.mixin({
 
     async addToCart(product) {
       const params = {
-        userId: 1,
+        userId: JSON.parse(localStorage.getItem("user")).userId,
         bookId: product.bookId
       };
-      await Api()
+      await Api(true)
         .post("/shopping", params)
         .catch(err => console.log(err));
       this.productHeading = product.heading;

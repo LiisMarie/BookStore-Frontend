@@ -13,22 +13,25 @@ class AuthService {
         }
 
         return response.data;
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   logout() {
-    Api(true).post(
-      "users/logout/" + JSON.parse(localStorage.getItem("user")).username
-    );
+    Api(true)
+      .post("users/logout/" + JSON.parse(localStorage.getItem("user")).username)
+      .catch(err => console.log(err));
     localStorage.removeItem("user");
   }
 
   register(user) {
-    return Api().post("users/register", {
-      username: user.username,
-      email: user.email,
-      password: user.password
-    });
+    return Api()
+      .post("users/register", {
+        username: user.username,
+        email: user.email,
+        password: user.password
+      })
+      .catch(err => console.log(err));
   }
 }
 
