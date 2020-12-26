@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Api from "../services/Api";
 
+import { auth } from "./auth.module";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -16,8 +18,8 @@ export default new Vuex.Store({
     purchaseTotalPrice: state => state.purchaseTotalPrice
   },
   mutations: {
-    authenticate(state, { loggedInUserId }) {
-      this.loggedInUserId = loggedInUserId;
+    authenticate() {
+      this.loggedInUserId = JSON.parse(localStorage.getItem("user")).userId;
     },
     SET_ShoppingCart(state, shoppingCart) {
       state.shoppingCart = shoppingCart;
@@ -31,7 +33,7 @@ export default new Vuex.Store({
   },
   actions: {
     loadShoppingCart({ commit }) {
-      Api()
+      Api(true)
         .get("/user/" + this.loggedInUserId + "/shopping")
         .then(response => [...response.data])
         .then(shoppingCart => {
@@ -39,13 +41,13 @@ export default new Vuex.Store({
         });
     },
     emptyCart() {
-      Api()
+      Api(true)
         .delete("/shopping/" + this.loggedInUserId)
         .then(() => this.dispatch("loadShoppingCart"))
         .catch(err => console.log(err));
     },
     deleteItemFromCart() {
-      Api()
+      Api(true)
         .delete(
           "/shopping/user/" +
             this.loggedInUserId +
@@ -56,5 +58,7 @@ export default new Vuex.Store({
         .catch(err => console.log(err));
     }
   },
-  modules: {}
+  modules: {
+    auth
+  }
 });

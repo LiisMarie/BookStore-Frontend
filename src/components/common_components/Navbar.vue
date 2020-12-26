@@ -19,6 +19,7 @@
           href="#"
           class="navbar-text mr-3"
           @click.prevent="route_to('/checkout')"
+          v-if="isAdmin || isUser"
         >
           <font-awesome-icon :icon="['fas', 'shopping-cart']"
         /></a>
@@ -27,28 +28,41 @@
           <li class="nav-item mx-2 mx-lg-0">
             <div class="dropdown">
               <b-nav-item href="#"
-                ><font-awesome-icon :icon="['fas', 'user']"
+                ><font-awesome-icon
+                  :icon="['fas', 'user']"
+                  v-if="currentUser"/><font-awesome-icon
+                  :icon="['fas', 'sign-in-alt']"
+                  v-if="!currentUser"
               /></b-nav-item>
               <div class="dropdown-content">
                 <a
                   href="#"
                   class="dropdown-item"
                   @click.prevent="route_to('/account/register')"
+                  v-if="!(isAdmin || isUser)"
                   >Register</a
                 >
                 <a
                   href="#"
                   class="dropdown-item"
                   @click.prevent="route_to('/account/login')"
+                  v-if="!(isAdmin || isUser)"
                   >Log in</a
                 >
                 <a
                   href="#"
                   class="dropdown-item"
                   @click.prevent="route_to('/account/information')"
+                  v-if="isAdmin || isUser"
                   >My account</a
                 >
-                <a href="#" class="dropdown-item">Log out</a>
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  v-if="currentUser"
+                  @click.prevent="logOut()"
+                  >Log out</a
+                >
               </div>
             </div>
           </li>
@@ -75,7 +89,10 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item href="#" @click.prevent="route_to('/products/add/add')"
+          <b-nav-item
+            href="#"
+            @click.prevent="route_to('/products/add/add')"
+            v-if="isAdmin"
             >Add book</b-nav-item
           >
         </b-navbar-nav>
@@ -88,11 +105,31 @@
 export default {
   name: "Navbar",
   props: ["categories", "amountOfItemsInCart"],
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+    isAdmin() {
+      return this.isLoggedAccountAdmin(this.currentUser);
+    },
+    isUser() {
+      return this.isLoggedAccountUser(this.currentUser);
+    }
+  },
+  created() {
+    if (this.loggedIn) {
+      this.setRouterTo("/account/information");
+    }
+  },
   methods: {
     route_to(path) {
       const replacedPath = this.replaceSpaceWithUnderscore(path);
       this.setRouterTo(replacedPath);
       //if (this.$route.path !== replacedPath) this.setRouterTo(replacedPath);
+    },
+    logOut() {
+      this.$store.dispatch("auth/logout");
+      this.$router.go(0);
     }
   }
 };

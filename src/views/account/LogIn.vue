@@ -4,21 +4,21 @@
       <b-col md="7" lg="6">
         <b-card header="Log in">
           <b-form @submit.stop.prevent="onSubmit">
-            <!-- email -->
+            <!-- username -->
             <b-form-group
-              id="input-group-email"
-              label="Email"
-              label-for="input-email"
+              id="input-group-username"
+              label="Username"
+              label-for="input-username"
             >
               <b-form-input
-                id="input-email"
-                name="input-email"
-                v-model="$v.form.email.$model"
-                :state="validateState('email')"
-                aria-describedby="input-email-live-feedback"
+                id="input-username"
+                name="input-username"
+                v-model="$v.form.username.$model"
+                :state="validateState('username')"
+                aria-describedby="input-username-live-feedback"
               ></b-form-input>
 
-              <b-form-invalid-feedback id="input-email-live-feedback"
+              <b-form-invalid-feedback id="input-username-live-feedback"
                 >This is a required field.
               </b-form-invalid-feedback>
             </b-form-group>
@@ -46,7 +46,14 @@
             <div class="centered">
               <b-button type="submit" variant="primary">Log in</b-button>
 
-              <br />
+              <div class="form-group">
+                <br />
+
+                <div v-if="message" class="alert alert-danger" role="alert">
+                  {{ message }}
+                </div>
+              </div>
+
               <br />
 
               Don't have an account?
@@ -64,16 +71,28 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
+import User from "@/models/user";
 
 export default {
   name: "Registration",
   data() {
     return {
       form: {
-        email: "",
+        username: "",
         password: ""
-      }
+      },
+      message: ""
     };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+  created() {
+    if (this.loggedIn) {
+      this.setRouterTo("/account/information");
+    }
   },
   methods: {
     validateState(name) {
@@ -85,14 +104,26 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-      alert("Logged in to an account!");
-      // TODO call/create log in method (PART 3)
+      this.$store
+        .dispatch(
+          "auth/login",
+          new User(this.form.username, this.form.password)
+        )
+        .then(
+          () => {
+            this.$router.push("/account/information");
+          },
+          () => {
+            //alert("Wrong username or password!");
+            this.message = "Wrong username or password!";
+          }
+        );
     }
   },
   mixins: [validationMixin],
   validations: {
     form: {
-      email: {
+      username: {
         required
       },
       password: {

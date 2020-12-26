@@ -240,9 +240,6 @@ export default {
       }
     }
   },
-  beforeMount() {
-    console.log("hhehehhe");
-  },
   async created() {
     this.genres.push({ value: null, text: "Choose..." });
     const categoriesMap = await this.getCategories();

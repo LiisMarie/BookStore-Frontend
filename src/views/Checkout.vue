@@ -84,12 +84,12 @@ export default {
   props: ["updateCart"],
   methods: {
     async emptyUserCart() {
-      this.$store.commit("authenticate", { loggedInUserId: 1 }); // TODO part2 real user authentication
+      this.$store.commit("authenticate");
       await this.$store.dispatch("emptyCart");
       this.$bvModal.show("makeOrderModal");
     },
     async removeFromCart(product) {
-      this.$store.commit("authenticate", { loggedInUserId: 1 }); // TODO part2 real user authentication
+      this.$store.commit("authenticate");
       this.$store.commit("SET_ProductToDelete", {
         productToDelete: product.bookId
       });
@@ -97,10 +97,26 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
     ...mapGetters(["shoppingCart", "purchaseTotalPrice"])
   },
   created() {
-    this.$store.commit("authenticate", { loggedInUserId: 1 }); // TODO part2 real user authentication
+    if (this.currentUser) {
+      if (
+        !(
+          this.isLoggedAccountAdmin(this.currentUser) ||
+          this.isLoggedAccountUser(this.currentUser)
+        )
+      ) {
+        this.setRouterTo("/");
+      }
+    } else {
+      this.setRouterTo("/");
+    }
+
+    this.$store.commit("authenticate");
     this.$store.dispatch("loadShoppingCart");
   }
 };

@@ -19,23 +19,8 @@
       <p @click="goToDetails(product.isbn)">
         Price: {{ product.cost.toFixed(2) }}€
       </p>
-      <div class="div_items">
-        <b-button
-          class="action-btn"
-          size="sm"
-          variant="danger"
-          @click="deleteProductModal(product)"
-        >
-          <font-awesome-icon :icon="['fas', 'trash']" />
-        </b-button>
-        <b-button
-          class="action-btn"
-          size="sm"
-          variant="secondary"
-          @click="goToEditBook(product.isbn)"
-        >
-          <font-awesome-icon :icon="['fas', 'edit']" />
-        </b-button>
+
+      <b-row align-h="center">
         <b-button
           class="action-btn"
           size="sm"
@@ -52,7 +37,25 @@
         >
           <font-awesome-icon :icon="['fas', 'cart-plus']" />
         </b-button>
-      </div>
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="danger"
+          @click="deleteProductModal(product)"
+          v-if="isAdmin"
+        >
+          <font-awesome-icon :icon="['fas', 'trash']" />
+        </b-button>
+        <b-button
+          class="action-btn"
+          size="sm"
+          variant="secondary"
+          @click="goToEditBook(product.isbn)"
+          v-if="isAdmin"
+        >
+          <font-awesome-icon :icon="['fas', 'edit']" />
+        </b-button>
+      </b-row>
     </b-card>
   </b-card-group>
 </template>
@@ -61,6 +64,14 @@
 export default {
   name: "ProductCard",
   props: ["product", "updateCart", "deleteProductModal"],
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+    isAdmin() {
+      return this.isLoggedAccountAdmin(this.currentUser);
+    }
+  },
   methods: {
     goToEditBook(isbn) {
       this.setRouterTo("/products/edit/" + isbn);
@@ -75,8 +86,5 @@ export default {
 <style lang="scss">
 .action-btn {
   margin-left: 10px;
-}
-.div_items {
-  align-content: baseline;
 }
 </style>

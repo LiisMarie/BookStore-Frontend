@@ -16,7 +16,7 @@ Vue.mixin({
         description: form.description,
         cost: form.cost
       };
-      await Api()
+      await Api(true)
         .post("/books", params)
         .then(response => {
           this.addImage(response.data.bookId, form.isbn, form.image, false);
@@ -31,7 +31,7 @@ Vue.mixin({
       const imgBlob = new Blob([image], { type: "image/png" });
       const formData = new FormData();
       formData.append("imageFile", imgBlob, bookIsbn);
-      await Api()
+      await Api(true)
         .post("/images/" + bookId, formData)
         .then(() => {
           if (editingBook) {
@@ -85,7 +85,7 @@ Vue.mixin({
     async getBooksBySearch(searchInput) {
       let book = [];
       await Api()
-        .get("/data/search/" + searchInput)
+        .get("/data/search/?input=" + searchInput)
         .then(response => {
           book = response.data;
         })
@@ -96,7 +96,7 @@ Vue.mixin({
     async getSortedBooks(sortingAttribute) {
       let book = [];
       await Api()
-        .get("/data/sort/price/" + sortingAttribute)
+        .get("/data/sort/price?parameter=" + sortingAttribute)
         .then(response => {
           book = response.data;
         })
@@ -117,7 +117,7 @@ Vue.mixin({
         description: form.description,
         cost: form.cost
       };
-      await Api()
+      await Api(true)
         .put("/books/" + bookId, params)
         .then(() => {
           this.addImage(bookId, form.isbn, form.image, true);
@@ -131,7 +131,7 @@ Vue.mixin({
     // DELETE
 
     async deleteBookById(bookId) {
-      await Api()
+      await Api(true)
         .delete("/books/" + bookId)
         .catch(err => console.log(err));
       this.$router.go(0);
