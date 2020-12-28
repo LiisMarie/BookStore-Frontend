@@ -1,6 +1,6 @@
 <template>
   <b-container class="mt-3">
-    <b-row class="justify-content-md-center">
+    <b-row class="justify-content-center">
       <b-jumbotron>
         <h4>
           <strong>{{ currentUser.username }}</strong> Profile
