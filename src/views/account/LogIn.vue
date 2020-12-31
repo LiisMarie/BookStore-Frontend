@@ -111,10 +111,14 @@ export default {
         )
         .then(
           () => {
-            this.$router.push("/account/information");
+            if (JSON.parse(localStorage.getItem("user"))) {
+              this.$router.push("/account/information");
+            } else {
+              this.message = "Wrong username or password!";
+            }
           },
           () => {
-            //alert("Wrong username or password!");
+            this.successful = false;
             this.message = "Wrong username or password!";
           }
         );
