@@ -102,10 +102,12 @@
                   {{ message }}
                   <br />
 
-                  Go to login
-                  <b-link href="#" @click="setRouterTo('/account/login')"
-                    >Log in</b-link
-                  >
+                  <div v-if="successful">
+                    Go to
+                    <b-link href="#" @click="setRouterTo('/account/login')"
+                      >Log in</b-link
+                    >
+                  </div>
                 </div>
               </div>
 
