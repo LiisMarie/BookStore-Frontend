@@ -2,7 +2,7 @@
 
 Team 11 - Rait Kulbok, Liis-Marie Kütt, Boriss Zahharov
 
-[About the project (pages)](https://raitk3.github.io/)
+[About the project (pages)](https://rakulb.pages.taltech.ee/iti0203-team11-website/index.html)
 
 ## Get backend up and running
 [Clone backend from here](https://gitlab.cs.ttu.ee/rakulb/iti0203-2020-backend-team11-bookstore)
