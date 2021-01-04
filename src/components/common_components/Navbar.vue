@@ -14,7 +14,13 @@
         >
           <font-awesome-icon :icon="['fas', 'search']"
         /></a>
-
+        <a
+          href="#"
+          class="navbar-text mr-3"
+          @click.prevent="route_to('/products/search/_')"
+        >
+          <font-awesome-icon :icon="['fas', 'search']"
+        /></a>
         <a
           href="#"
           class="navbar-text mr-3"
